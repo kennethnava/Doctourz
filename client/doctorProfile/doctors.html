@@ -1,0 +1,41 @@
+<template name="doctors">
+    {{> navigation}}
+    {{>breadcrumb}}
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <a href="/newDoctor" class="btn btn-primary">Add New Doctor</a>
+        {{> reactiveTable settings = settings}}
+    </div>
+
+</template>
+
+
+<template name="doctorslist">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        {{> reactiveTable settings = settings}}
+    </div>
+</template>
+
+
+<template name="newDoctor">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        {{> quickForm collection  = "Doctors"  id="doctorInsert" type="insert"}}
+    </div>
+</template>
+
+
+<template name="doctormain">
+    {{> navigation}}
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#docList" data-toggle="tab" aria-expanded="false">Doctors List</a></li>
+        <li class=""><a href="#newDoc" data-toggle="tab" aria-expanded="true">New Doctor</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade" id="docList">
+            {{> doctorslist}}
+        </div>
+        <div class="tab-pane fade active in" id="newDoc">
+            {{> newDoctor}}
+        </div>
+    </div>
+</template>
+
