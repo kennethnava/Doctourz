@@ -18,4 +18,4 @@ SubSpecialization.attachSchema(new SimpleSchema({
         type: String,
         label: "Sub-Specialiazation"
     }
-})
+}))
