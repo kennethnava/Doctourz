@@ -13,7 +13,7 @@ if(Meteor.isClient){
 
                 user = Doctors.findOne({username:username,password:password});
 
-                alert("doctor");
+                //alert("doctor");
                 sessionStorage.setItem('docId', user._id)
                 Router.go('/docacctinfo');
             }
@@ -23,12 +23,12 @@ if(Meteor.isClient){
                 if(user.count()> 0){
 
                     user = Patients.find({username:username,password:password});
-                    alert("patient");
+                   // alert("patient");
                     sessionStorage.setItem('patId', user._id)
                     Router.go('/patientcacctinfo');
                 }
                 else{
-                    alert("none");
+                    //alert("none");
                     var errorMessage = "Invalid account. Please try again.";
                     sessionStorage.setItem('errorMessage', errorMessage);
                     Router.go('/loginform');

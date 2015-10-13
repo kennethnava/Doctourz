@@ -1,0 +1,42 @@
+<template name="affs">
+    <div class="col-xs-12 col-sm-3">
+        <div class="panel panel-default top-20">
+            <div class="panel-heading">
+                New Affilliation
+            </div>
+            <div class="panel-body">
+                {{#autoForm collection="Affilliations" id="insertaffilliations" type="insert" doc = default}}
+                    <fieldset>
+                        {{> afQuickField name='name'}}
+                        {{> afQuickField name='description'}}
+                        {{> afQuickField name='doctor_id'  class="hidden" value= "ZHQbzvLsF4oPXqNdy"}}
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                {{/autoForm}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Affilliation Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each affilliations}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                    <td>
+                        <button class="btn btn-xs btn-success">Update</button>
+                        <button class="btn btn-xs btn-default">Remove</button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>

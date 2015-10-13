@@ -56,4 +56,6 @@ Router.route('/docacctinfo', function () {
     this.render('docacctinfo');
 });
 
-
+Router.route('/logout', function () {
+    this.render('userregistration');
+});
