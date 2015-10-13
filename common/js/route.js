@@ -57,5 +57,5 @@ Router.route('/docacctinfo', function () {
 });
 
 Router.route('/logout', function () {
-    this.render('userregistration');
+    this.render('homepage');
 });

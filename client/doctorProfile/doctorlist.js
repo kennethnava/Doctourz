@@ -11,17 +11,5 @@ if(Meteor.isClient){
             }
     });
 
-    Template.actionbuttons.events({
-        'click .deletebtn': function(event){
-            var id = event.currentTarget.id;
-
-            Doctors.remove({_id: id});
-        },
-        'click .editbtn': function(event){
-            var id = event.currentTarget.id;
-
-            Session.set('docId',id);
-        }
-    })
 
 }
