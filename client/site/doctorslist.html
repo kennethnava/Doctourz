@@ -1,0 +1,40 @@
+<template name="doctorslists">
+    {{> siteHeader}}
+    <div class="col-sm-10 col-sm-offset-1">
+        {{#each doctors}}
+                <div class="col-xs-6 col-sm-3 top-20">
+                    <div class="profileThumb col-xs-12">
+                        <div class="col-xs-12 no-padd"><img src="dummy.jpg" class="img-thumbnail"></div>
+
+                        <label>Name: &nbsp;&nbsp;&nbsp;</label>{{name}}<br/>
+                        <label>Gender: &nbsp;&nbsp;&nbsp;</label>{{gender}}<br/>
+                        <label>Username: &nbsp;&nbsp;&nbsp;</label>{{username}}<br/>
+                        <label>Password: &nbsp;&nbsp;&nbsp;</label>{{password}}<br/>
+
+                        <!--<a class="btn btn-success btn-xs" href="/doctorsprofile/{{_id}}">View Profile</a>-->
+                        <button class="btn btn-success btn-xs viewButton"  id="{{_id}}">View Profile</button>
+                    </div>
+                </div>
+        {{/each}}
+    </div>
+</template>
+
+
+<template name="doctorsprofile">
+    {{> siteHeader}}
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-xs-12 profileThumb">
+            <div class="col-xs-12 no-padd">
+                    <img src="dummy.jpg" class="img-thumbnail">
+            </div>
+            <b>{{profile.name}}{{profile._id}}</b>
+            <div>
+                {{>affilliations}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="affilliations">
+    <h1>{{affilliations.name}}</h1>
+</template>

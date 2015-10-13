@@ -1,0 +1,40 @@
+<template name="siteHeader">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/listall">Doctourz</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="/patientslists">Patients <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/doctorslists">Doctors</a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/loginform">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--<div class="col-xs-12 text-center" style="height:100px; background-color:lightblue;">
+        <h1>Doctourz</h1>
+        <a href="/userregistration">Patients registration</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/doctorregistration">Doctors registration</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/doctorregistration">Login</a>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <input type="text" class="form-control input-lg" placeholder="Search..."/>
+        </div>
+    </div>-->
+</template>
