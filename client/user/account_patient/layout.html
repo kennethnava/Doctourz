@@ -1,0 +1,36 @@
+<template name="patientLayout">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="">Logged in as: {{patient.name}}</a></li>
+                    <li><a href="/logout">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 top-20">
+        <ul class="nav nav-tabs top-20">
+            <li class=""><a href="patientacctinfo">Profile</a></li>
+            <li class=""><a href="patientmedicalrecord">Medical Records</a></li>
+            <li class=""><a href="patientmedicalconditions">Medical Conditions</a></li>
+            <li class=""><a href="patientallergies">Allergies</a></li>
+            <li class=""><a href="patientvidecallschedule">Video Call Schedule</a></li>
+        </ul>
+        <div class="profileThumb col-xs-12 top-20">
+            {{>yield}}
+        </div>
+    </div>
+
+</template>

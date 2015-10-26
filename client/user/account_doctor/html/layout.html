@@ -1,0 +1,41 @@
+<template name="doctorLayout">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="">Logged in as: {{doctor.name}}</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 top-20">
+        <ul class="nav nav-tabs top-20">
+            <li class=""><a href="doctorpersonalinformation">Personal Information</a></li>
+            <li class=""><a href="doctoraffilliations">Affilliations</a></li>
+            <li class=""><a href="doctorprocedures">Procedures</a></li>
+            <li class=""><a href="doctorspecializations">Specializations</a></li>
+            <li class=""><a href="doctorsubspecializations">Sub-Specializations</a></li>
+            <li class=""><a href="doctoreducation">Education</a></li>
+            <li class=""><a href="doctortrainings">Trainings</a></li>
+            <li class=""><a href="doctorvideocall">Video call Schedule</a></li>
+        </ul>
+        <div class="profileThumb col-xs-12 top-20">
+            {{>yield}}
+        </div>
+    </div>
+
+</template>

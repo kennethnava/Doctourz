@@ -1,0 +1,87 @@
+<template name="account_admin_clinics_list">
+    {{>account_admin_navigation}}
+    <div class="working-area col-xs-12 col-sm-10 col-sm-offset-1">
+        <h3>Clinics Section</h3>
+        {{>clinic_section_nav}}
+        {{>yield}}
+    </div>
+</template>
+
+<template name="clinic_section_nav">
+    <ul class="nav nav-tabs">
+        <li class=""><a href="clinicthumb" >Thumbnail View</a></li>
+        <li><a href="cliniclist" >List View</a></li>
+    </ul>
+</template>
+
+<template name="account_admin_clinics_list_view">
+    <table class="table table-striped table-bordered table-hover top-20">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Country</th>
+            <th>mobile</th>
+            <th>landline</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each clinics}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{address}}</td>
+                <td>{{country}}</td>
+                <td>{{mobile}}</td>
+                <td>{{landline}}</td>
+                <td><button id="{{_id}}" class="btn btn-primary btn-xs patient-search"><i class="fa fa-search"></i></button></td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+
+<template name="account_admin_clinics_thumb_view">
+    {{#each clinics}}
+        <div class="col-xs-6 col-sm-2 top-20">
+            <div class="col-xs-12  profileThumb">
+                <div class="col-xs-12 no-padd ">
+                    <img src="/dummy.jpg" class="img-thumbnail">
+                </div>
+                <div class="col-xs-12 no-padd top-5">
+                    <label class="green">{{name}}</label><br/>
+                    {{country}}<br/>
+                    {{address}}<br/>
+                    {{mobile}}<br/>
+                    {{landline}}
+                    <div class="col-xs-12 no-padd">
+                        <button id="{{_id}}"   class="btn btn-primary btn-xs patient-search top-5"><i class="fa fa-search"></i> View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</template>
+
+<template name="account_admin_clinics_profile">
+    <div class="working-area col-xs-12 col-sm-8 col-sm-offset-2 profileThumb">
+        <div class="col-xs-12">
+            <img src="/dummy.jpg" class="img-thumbnail">
+        </div>
+        <div class="col-xs-12">
+            <h3>{{activeClinics.name}}</h3>
+            <label>Country:  {{activeClinics.country}}</label><br/>
+            <label>Address:  {{activeClinics.address}}</label><br/>
+            <label>Mobile:  {{activeClinics.mobile}}</label><br/>
+            <label>landline:  {{activeClinics.landline}}</label><br/>
+            <label>Writeup:  {{activeClinics.writeup}}</label><br/>
+            <label>History:  {{activeClinics.history}}</label><br/>
+
+            <a href="clinicthumb" class="top-20 btn btn-primary">Thumbnail View</a>
+            <a href="cliniclist" class="top-20 btn btn-primary">List View</a>
+            <h1 class="text-center">More Details to come</h1>
+        </div>
+
+    </div>
+</template>

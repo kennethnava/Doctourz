@@ -1,0 +1,122 @@
+<template name="account_patient_allergies">
+    <div class="col-xs-12">
+        {{>account_patient_allergy_list}}
+    </div>
+</template>
+
+<template name="account_patient_allergies_public">
+    <div class="col-xs-12">
+        {{>account_patient_allergy_list_public}}
+    </div>
+</template>
+
+
+<template name="account_patient_new_allergy">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    New Allergy details
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <input type="text" class="hidden" id="patientId" value={{sessionId}} >
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select type="text" class="form-control " id="type">
+                                <option value="food">Food</option>
+                                <option value="drugs">Drugs</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Particular</label>
+                            <input class="form-control " id="particular" type="text">
+                        </div>
+                        <a class="btn btn-default" href="edit">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="account_patient_allergy_list">
+    <table class="table table-striped table-hover top-20">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Particular</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each record}}
+            <tr>
+                <td>{{type}}</td>
+                <td>{{particular}}</td>
+                <td>
+                    <button  class="btn btn-xs btn-primary update" id={{_id}}>Update</button>
+                    <button class="btn btn-xs btn-default delete" id={{_id}}>Remove</button>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+
+<template name="account_patient_allergy_list_public">
+    <table class="table table-striped table-hover top-20">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Particular</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each record}}
+            <tr>
+                <td>{{type}}</td>
+                <td>{{particular}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+
+
+<template name="account_patient_allergy_update">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    New Allergy details
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <input type="text" class="hidden" id="patientId" value={{data._id}} >
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select type="text" class="form-control " id="type">
+                                <option value="food">Food</option>
+                                <option value="drugs">Drugs</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Particular</label>
+                            <input class="form-control " id="particular" type="text" value={{data.particular}}>
+                        </div>
+                        <a class="btn btn-default" href="../edit">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

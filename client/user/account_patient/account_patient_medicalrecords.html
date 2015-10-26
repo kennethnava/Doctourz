@@ -1,0 +1,143 @@
+<template name="account_patient_medicalrecords">
+    <div class="col-xs-12">
+        {{>patientMedicalRecordList}}
+    </div>
+
+</template>
+
+<template name="account_patient_medicalrecords_public">
+    <div class="col-xs-12">
+        {{>patientMedicalRecordList_public}}
+    </div>
+
+</template>
+
+<template name="patientMedicalRecordList">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Reason</th>
+                <th>Hospital</th>
+                <th>Inclusive Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each record}}
+                <tr>
+                    <td>{{reason}}</td>
+                    <td>{{hospital}}</td>
+                    <td>{{datefrom  }} - {{dateTo}}</td>
+                    <td>
+                        <button  class="btn btn-xs btn-primary update" id={{_id}}>Update</button>
+                        <button class="btn btn-xs btn-default delete" id={{_id}}>Remove</button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="patientMedicalRecordList_public">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Reason</th>
+                <th>Hospital</th>
+                <th>Inclusive Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each record}}
+                <tr>
+                    <td>{{reason}}</td>
+                    <td>{{hospital}}</td>
+                    <td>{{datefrom  }} - {{dateTo}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="medicalrecordForm">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-sm-6 col-sm-offset-3 top-20">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add New Medical Record
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <input type="text" class="hidden" id="patientId" value={{sessionId}}>
+                        <div class="form-group">
+                            <label>From</label>
+                            <input type="date" class="form-control " id="dateFrom">
+                        </div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <input type="date" class="form-control " id="dateTo">
+                        </div>
+                        <div class="form-group">
+                            <label>Reason/Description</label>
+                            <textarea  class="form-control " id="reason"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Hospital</label>
+                            <input type="text" class="form-control " id="hostipal">
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-default" href="edit">Back</a>
+                            <button class="btn btn-primary pull-right" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="medicalrecordForm_update">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-sm-6 col-sm-offset-3 top-20">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add New Medical Record
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <input type="text" class="hidden" id="patientId" value={{data._id}}>
+                        <div class="form-group">
+                            <label>From</label>
+                            <input type="date" class="form-control " id="dateFrom" value={{data.dateFrom}} >
+                        </div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <input type="date" class="form-control " id="dateTo" value={{data.dateTo}}>
+                        </div>
+                        <div class="form-group">
+                            <label>Reason/Description</label>
+                            <textarea  class="form-control " id="reason" value={{data.reason}}></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Hospital</label>
+                            <input type="text" class="form-control " id="hostipal" value={{data.hospital}}>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-default" href="../edit">Back</a>
+                            <button class="btn btn-primary pull-right" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

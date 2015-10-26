@@ -1,0 +1,29 @@
+<template name="loginform">
+    <div class="row"></div>
+    <div class="col-sm-8 top-20">
+        <h1>Why do I have to sign up for an account?</h1>
+        <p>You get patient-to-physician matching. To get the best match possible, we need to know certain things about you. Signing up for an account allows us to know more about you.</p>
+    </div>
+    <div class="col-sm-4 top-20">
+        <h1>Sign In</h1>
+        <form>
+            <div class="alert alert-danger">
+                You need to sign in or sign up before continuing.
+            </div>
+            <div id="errorDiv"></div>
+            <div class="form-group">
+                <input type="text" class="form-control " placeholder="Username" id="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control " placeholder="Password" id="password">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" value="Remember me"><label>&nbsp;Remember Me</label>
+            </div>
+            <button class="btn btn-primary btn-block">Login</button>&nbsp;&nbsp;&nbsp;
+        </form>
+        <hr/>
+        <a>Don't have an account? Sign up!</a><br/>
+        <a>Forgot your password?</a>
+    </div>
+</template>

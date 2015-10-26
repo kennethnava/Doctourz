@@ -1,0 +1,41 @@
+<template name="account_patient_personal">
+    <div class="col-xs-12 no-padd">
+        <img src="/dummy.jpg" class="img-thumbnail">
+    </div>
+    <div class="col-xs-12 no-padd top-20">
+        <label>Name: </label><label>{{patient.name}}</label><br/>
+        <label>Gender: </label><label>{{patient.gender}}</label><br/>
+        <label>Birthdate: </label><label>{{patient.birthdate}}</label><br/>
+        <label>Country: </label><label>{{patient.country}}</label><br/>
+        <label>Date Joined: </label><label>{{patient.dateRegistered}}</label><br/>
+        <a href="patientacctinfoedit" class="btn btn-primary pull-right">Edit</a>
+    </div>
+</template>
+
+<template name="account_patient_personal_edit">
+    <div class="col-xs-12 no-padd">
+        <img src="/dummy.jpg" class="img-thumbnail">
+    </div>
+    <div class="col-xs-12 no-padd top-20">
+        <form>
+            <div id="errorDiv"></div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" value={{patient.name}} id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <input type="text" value={{patient.gender}} id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Birthdate</label>
+                <input type="date" value={{patient.birthdate}} id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <input type="text" value={{patient.country}} id="name" class="form-control">
+            </div>
+        </form>
+        <a href="patientacctinfo" class="btn btn-primary pull-right">Back</a>
+    </div>
+</template>

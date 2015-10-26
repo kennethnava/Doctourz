@@ -1,0 +1,105 @@
+<template name="account_doctor_procedures">
+
+    <div class="col-xs-12 col-sm-12">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Procedure Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each procedures}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                    <td>
+                        <a href="doctorprocedureupdate" class="btn btn-xs btn-primary update" id={{_id}}>Update</a>
+                        <button class="btn btn-xs btn-default delete" id={{_id}}>Remove</button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</template>
+
+<template name="account_doctor_procedures_public">
+
+    <div class="col-xs-12 col-sm-12">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Procedure Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each procedures}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</template>
+
+<template name="procedures_form">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default top-20">
+                <div class="panel-heading">
+                    New Procedure
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="doctorId" class="hidden" value={{sessionId}}>
+                            <input type="text" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" id="description" class="form-control">
+                        </div>
+                        <a href="/physicianprofile/edit" class="btn btn-default">Back</a>
+                        <button class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="doctor_procedure_update">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default top-20">
+            <div class="panel-heading">
+                New Procedure
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div id="errorDiv"></div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="procId" class="hidden" value={{procedures._id}}>
+                        <input type="text" id="name" class="form-control" value={{procedures.name}}>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="description" class="form-control" value={{procedures.description}}>
+                    </div>
+                    <a href="/physicianprofile/edit" class="btn btn-default">Back</a>
+                    <button class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,55 @@
+<template name="physicianprofile_public">
+    <div class="row">
+
+    </div>
+    <div class="col-xs-12 top-20 no-padd">
+    </div>
+
+    <div class="col-xs-12 no-padd">
+        {{#if equals details.status 'patient'}}
+            <div class="alert alert-info">
+                You haven't applied for the physician position yet. <a id="applynow" class="btn btn-primary btn-sm" href="">Apply now.</a>
+            </div>
+        {{/if}}
+        {{#if equals details.status 'applicant'}}
+            <div class="alert alert-success">
+                Your application has been submitted. You will be subjected for the recruitment process. <a id="cancelapplication"  class="btn btn-success btn-sm" href="">Cancel application.</a>
+            </div>
+        {{/if}}
+    </div>
+
+
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Education</h3><hr/>
+                {{>account_doctor_education_public}}
+            </div>
+            <div class="col-sm-6">
+                <h3>Trainings</h3><hr/>
+                {{>account_doctor_trainings_public}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Specializations</h3><hr/>
+                {{>account_doctor_specializations_public}}
+            </div>
+            <div class="col-sm-6">
+                <h3>Sub-Specializations</h3><hr/>
+                {{>account_doctor_subspecializations_public}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Affiliations</h3><hr/>
+                {{>account_doctor_affilliations_public}}
+            </div>
+            <div class="col-sm-6">
+                <h3>Procedures</h3><hr/>
+                {{>account_doctor_procedures_public}}
+            </div>
+        </div>
+    </div>
+
+</template>

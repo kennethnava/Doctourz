@@ -1,0 +1,82 @@
+<template name="account_admin_doctors_list">
+    {{>account_admin_navigation}}
+    <div class="working-area col-xs-12 col-sm-10 col-sm-offset-1">
+        <h3>Doctors Section</h3>
+        {{>doctor_section_nav}}
+        {{>yield}}
+    </div>
+</template>
+
+<template name="doctor_section_nav">
+    <ul class="nav nav-tabs">
+        <li class=""><a href="doctorthumb" >Thumbnail View</a></li>
+        <li><a href="doctorlist" >List View</a></li>
+    </ul>
+</template>
+
+<template name="account_admin_doctors_list_view">
+    <table class="table table-striped table-bordered table-hover top-20">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Country</th>
+            <th>Age</th>
+            <th>Email Address</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each doctors}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{gender}}</td>
+                <td>{{country}}</td>
+                <td>{{birthdate}}</td>
+                <td>{{email}}</td>
+                <td><button id="{{_id}}" class="btn btn-primary btn-xs doctor-search"><i class="fa fa-search"></i></button></td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+
+<template name="account_admin_doctors_thumb_view">
+    {{#each doctors}}
+        <div class="col-xs-6 col-sm-2 top-20">
+            <div class="col-xs-12  profileThumb">
+                <div class="col-xs-12 no-padd ">
+                    <img src="/dummy.jpg" class="img-thumbnail">
+                </div>
+                <div class="col-xs-12 no-padd top-5">
+                    <label class="green">{{name}}</label><br/>
+                    {{gender}}<br/>
+                    {{country}}<br/>
+                    {{email}}
+                    <div class="col-xs-12 no-padd">
+                        <button id="{{_id}}"   class="btn btn-primary btn-xs doctor-search top-5"><i class="fa fa-search"></i> View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</template>
+
+<template name="account_admin_doctors_profile">
+        <div class="working-area col-xs-12 col-sm-8 col-sm-offset-2 top-20 profileThumb" >
+            <div class="col-xs-12 top-20">
+                <img src="/dummy.jpg" class="img-thumbnail">
+            </div>
+            <div class="col-xs-12">
+                <h3>{{activeDoctor.name}}</h3>
+                <label>Gender:  {{activeDoctor.gender}}</label><br/>
+                <label>Counrty:  {{activeDoctor.country}}</label><br/>
+                <label>Birthdate:  {{activeDoctor.birthdate}}</label><br/>
+                <label>Birthdate:  {{activeDoctor.email}}</label><br/>
+                <a href="doctorthumb" class="top-20 btn btn-primary">Thumnail View</a>
+                <a href="doctorlist" class="top-20 btn btn-primary">List View</a>
+                <h1 class="text-center">More Details to come</h1>
+            </div>
+        </div>
+</template>

@@ -1,0 +1,243 @@
+<template name="userprofile_edit">
+    <form class="form-horizontal">
+        <div class="row"></div>
+        <div class="col-xs-12 top-20"></div>
+        <div class="col-xs-12">
+            <h4>My Doctourz Profile</h4>
+            <div id="errorDiv"></div>
+            <div class="col-xs-12 no-padd" style="margin-top:50px;">
+                <div class="col-sm-6">
+                    <h3>Name</h3><hr/>
+                    <div class="form-group">
+                        <label  class="control-label col-xs-4">Last name</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="lastname" value={{details.lastname}}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">First name</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="firstname" value={{details.firstname}}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">Middle name</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="middlename" value={{details.middlename}}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">Name suffix</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="suffix" value={{details.suffix}}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-xs-4">Aliases</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="aliases" value={{details.aliases}}>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Other</h3><hr/>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Gender</label>
+                            <div class="col-xs-8">
+                                <div class="form-group">
+                                    {{#if equals details.gender 'Male'}}
+                                        <label><input id="Male" value="Male" type="radio" checked  name="gender">Male</label>
+                                    {{else}}
+                                        <label><input id="Male" value="Male"  type="radio"  name="gender">Male</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group">
+                                    {{#if equals details.gender 'Female'}}
+                                        <label><input id="Female" value="Female"  type="radio" checked  name="gender">Female</label>
+                                    {{else}}
+                                        <label><input id="Female" value="Female"  type="radio"  name="gender">Female</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group">
+                                    {{#if equals details.gender 'Unspecified'}}
+                                        <label><input id="Unspecified" value="Unspecified"  type="radio" checked  name="gender">Unspecified</label>
+                                    {{else}}
+                                        <label><input id="Unspecified" value="Unspecified"  type="radio"  name="gender">Unspecified</label>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Civil status</label>
+                            <div class="col-xs-8">
+                                <div class="form-group">
+                                    {{#if equals details.civilstatus 'Single'}}
+                                        <label><input id="Single" type="radio" checked  name="civil">Single</label>
+                                    {{else}}
+                                        <label><input id="Single" type="radio"  name="civil">Single</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group">
+                                    {{#if equals details.civilstatus 'Married'}}
+                                        <label><input id="Married" type="radio" checked  name="civil">Married</label>
+                                    {{else}}
+                                        <label><input id="Married" type="radio"  name="civil">Married</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group ">
+                                    {{#if equals details.civilstatus 'Separated'}}
+                                        <label><input id="Separated" type="radio" checked  name="civil">Separated</label>
+                                    {{else}}
+                                        <label><input id="Separated" type="radio"  name="civil">Separated</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group ">
+                                    {{#if equals details.civilstatus 'Divorced'}}
+                                        <label><input id="Divorced" type="radio" checked  name="civil">Divorced</label>
+                                    {{else}}
+                                        <label><input id="Divorced" type="radio"  name="civil">Divorced</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group ">
+                                    {{#if equals details.civilstatus 'Widowed'}}
+                                        <label><input id="Widowed" type="radio" checked  name="civil">Widowed</label>
+                                    {{else}}
+                                        <label><input id="Widowed" type="radio"  name="civil">Widowed</label>
+                                    {{/if}}
+                                </div>
+                                <div class="form-group ">
+                                    {{#if equals details.civilstatus 'Unspecified'}}
+                                        <label><input id="Unspecified2" type="radio" checked  name="civil">Unspecified</label>
+                                    {{else}}
+                                        <label><input id="Unspecified2" type="radio"  name="civil">Unspecified</label>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Birth date</label>
+                            <div class="col-xs-8">
+                                <input type="date" class="form-control" id="birthdate" value={{details.birthdate}}>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                    <h3>Address</h3><hr/>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Address 1</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="address1" value={{details.address1}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Address 2</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="address2" value={{details.addres2}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">City</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="city" value={{details.city}}>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">State</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="state" value={{details.state}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Country</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="country" value={{details.country}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Zip Code</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="zip" value={{details.zip}}>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="col-sm-6">
+                        <h3>Password</h3><hr/>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Password</label>
+                            <div class="col-xs-8">
+                                <input type="password" class="form-control" id="password1" value={{details.password}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Confirm password</label>
+                            <div class="col-xs-8">
+                                <input type="password" class="form-control" id="password2" value={{details.password}}>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h3>Contact Information</h3><hr/>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Email Address</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="email" value={{details.email}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Mobile Number</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="mobile" value={{details.mobile}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Telephone number</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="telephone" value={{details.telephone}}>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-xs-12">
+                    <h3>Help Doctourz</h3><hr/>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label  class="control-label col-xs-4">Allow Doctourz to read my psych profile </label>
+                            <div class="col-xs-8">
+                                {{#if equals details.public 'Yes'}}
+                                    <label><input id="Yes" type="radio" checked  name="allow">Yes</label><br/>
+                                    <label><input id="No" type="radio"  name="allow">No</label>
+                                {{else}}
+                                    <label><input id="Yes" type="radio"  name="allow">Yes</label><br/>
+                                    <label><input id="No" type="radio" checked  name="allow">No</label>
+                                {{/if}}
+                                <p class="top-10">Allowing us to read your profile will enable us to improve the quality of our Physician Matching algorithm.</p>
+                            </div>
+                        </div>
+
+                        <a href="/profile" class="btn btn-default">Back</a>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</template>

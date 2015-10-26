@@ -1,0 +1,154 @@
+<template name="doctorslists">
+    {{> siteHeader}}
+    <div class="col-sm-10 col-sm-offset-1">
+        {{#each doctors}}
+                <div class="col-xs-6 col-sm-3 top-20">
+                    <div class="profileThumb col-xs-12">
+                        <div class="col-xs-12 no-padd bottom-20"><img src="dummy.jpg" class="img-thumbnail"></div>
+
+                        <label>Name: &nbsp;&nbsp;&nbsp;</label>{{name}}<br/>
+                        <label>Gender: &nbsp;&nbsp;&nbsp;</label>{{gender}}<br/>
+                        <label>Country: &nbsp;&nbsp;&nbsp;</label>{{country}}<br/>
+                        <label>Email Address: &nbsp;&nbsp;&nbsp;</label>{{email}}<br/>
+                        <!--<a class="btn btn-success btn-xs" href="/doctorsprofile/{{_id}}">View Profile</a>-->
+                        <button class="btn btn-primary btn-xs viewButton"  id="{{_id}}">View Profile</button>
+                    </div>
+                </div>
+        {{/each}}
+    </div>
+</template>
+
+
+<template name="doctorsprofile">
+    {{> siteHeader}}
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 profileThumb2">
+            <div class="col-xs-12 no-padd bottom-20">
+                    <img src="dummy.jpg" class="img-thumbnail">
+            </div>
+
+            <h4>Personal Information</h4>
+            <div class="profileSection col-xs-12 bottom-20">
+                <div class="col-xs-12 col-sm-6 no-padd ">
+                    <b><b class="green">Name:&nbsp;&nbsp;&nbsp;</b>{{profile.name}}</b><br/>
+                    <b><b class="green">Email Address:&nbsp;&nbsp;&nbsp;</b>{{profile.email}}</b><br/>
+                    <b><b class="green">Writeups:&nbsp;&nbsp;&nbsp;</b>{{profile.writeups}}</b><br/>
+                </div>
+                <div class="col-xs-12 col-sm-6 no-padd ">
+                    <b><b class="green">Gender:&nbsp;&nbsp;&nbsp;</b>{{profile.gender}}</b><br/>
+                    <b><b class="green">BirthDate:&nbsp;&nbsp;&nbsp;</b>{{profile.BirthDate}}</b><br/>
+                    <b><b class="green">Country:&nbsp;&nbsp;&nbsp;</b>{{profile.country}}</b><br/>
+                </div>
+            </div>
+
+            <h4>Specializations</h4>
+            <div class="profileSection col-xs-12 bottom-20">
+                {{>specializations}}
+            </div>
+
+            <h4>Affilliations</h4>
+            <div class="profileSection col-xs-12 bottom-20">
+                {{>affilliations}}
+            </div>
+
+            <h4>Procedures</h4>
+            <div class="profileSection col-xs-12 bottom-20">
+                {{>procedures}}
+            </div>
+
+            <h4>Trainings</h4>
+            <div class="profileSection col-xs-12 bottom-20">
+                {{>trainings}}
+            </div>
+            <h4>Video Chat Schedule</h4>
+            <div class="profileSection col-xs-12 bottom-20">
+
+            </div>
+
+        </div>
+    </div>
+</template>
+
+<template name="affilliations">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each affilliations}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{description}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="specializations">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each specializations}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="procedures">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each specializations}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="trainings">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each specializations}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{dateAttended}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>

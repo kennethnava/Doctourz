@@ -1,0 +1,55 @@
+<template name="physicianprofile_edit">
+    <div class="row">
+
+    </div>
+    <div class="col-xs-12 top-20 no-padd">
+    </div>
+
+    <div class="col-xs-12 no-padd">
+        {{#if equals details.status 'patient'}}
+            <div class="alert alert-info">
+                You haven't applied for the physician position yet. <a id="applynow" class="btn btn-primary btn-sm" href="">Apply now.</a>
+            </div>
+        {{/if}}
+        {{#if equals details.status 'applicant'}}
+            <div class="alert alert-success">
+                Your application has been submitted. You will be subjected for the recruitment process. <a id="cancelapplication"  class="btn btn-success btn-sm" href="">Cancel application.</a>
+            </div>
+        {{/if}}
+    </div>
+
+
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Education<a href="/physicianprofile/education" class="btn btn-default btn-sm pull-right ">Add New</a></h3><hr/>
+                {{>account_doctor_education}}
+            </div>
+            <div class="col-sm-6">
+                <h3>Trainings<a href="/physicianprofile/trainings" class="btn btn-default btn-sm pull-right ">Add New</a></h3><hr/>
+                {{>account_doctor_trainings}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Specializations<a href="/physicianprofile/specializations" class="btn btn-default btn-sm pull-right ">Add New</a></h3><hr/>
+                {{>account_doctor_specializations}}
+            </div>
+            <div class="col-sm-6">
+                <h3>Sub-Specializations<a href="/physicianprofile/subspecializations" class="btn btn-default btn-sm pull-right ">Add New</a></h3><hr/>
+                {{>account_doctor_subspecializations}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Affiliations<a href="/physicianprofile/affiliations" class="btn btn-default btn-sm pull-right ">Add New</a></h3><hr/>
+                {{>account_doctor_affilliations}}
+            </div>
+            <div class="col-sm-6">
+                <h3>Procedures<a href="/physicianprofile/procedures" class="btn btn-default btn-sm pull-right ">Add New</a></h3><hr/>
+                {{>account_doctor_procedures}}
+            </div>
+        </div>
+    </div>
+
+</template>
