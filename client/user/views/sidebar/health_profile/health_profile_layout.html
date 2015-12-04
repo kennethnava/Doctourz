@@ -1,0 +1,36 @@
+<template name="healthProfileLayout">
+    <ul class="nav nav-pills">
+        <li class="dropdown pull-right">
+            <a class="dropdown-toggle bggray5 pull-right" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#basicinfomation" data-toggle="tab">Basic Information</a></li><li class="divider"></li>
+                <li><a href="#conditions" data-toggle="tab">Conditions and Symptoms</a></li><li class="divider"></li>
+                <li><a href="#allergies" data-toggle="tab">Allergies</a></li><li class="divider"></li>
+                <li><a href="#medicalrecords" data-toggle="tab">Treatments</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="basicinfomation">
+            {{>inside_about}}
+            {{>inside_family_history}}
+            {{>inside_lifestyle}}
+            {{>inside_contact_info}}
+            {{>inside_insurance}}
+        </div>
+        <div class="tab-pane fade" id="conditions">
+            {{>account_patient_medical_conditions_list}}
+            {{>account_patient_new_medical_condition}}
+        </div>
+        <div class="tab-pane fade" id="allergies">
+            {{>account_patient_allergy_list}}
+            {{>account_patient_new_allergy}}
+        </div>
+        <div class="tab-pane fade" id="medicalrecords">
+            {{>patientMedicalRecordList}}
+            {{>medicalrecordForm}}
+        </div>
+    </div>
+</template>

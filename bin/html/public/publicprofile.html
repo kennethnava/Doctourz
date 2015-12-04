@@ -1,0 +1,93 @@
+<template name="userprofile_public">
+    <div class="row"></div>
+    <div class="col-xs-12 col-sm-4 top-20">
+        {{>user_personal_info_public}}
+    </div>
+    <div class="col-xs-12 col-sm-8 top-20">
+        {{>matching_info_public}}
+    </div>
+</template>
+
+<template name="user_personal_info_public">
+    <img src="/{{details.avatar}}" class="img-thumbnail" style="max-width:200px;">
+    <hr/>
+    <label class="label">Email Address:</label><label class="label">{{details.email}}</label><br/>
+    <hr/>
+    <h3>Name</h3><hr/>
+    <label class="label">First Name:</label><label class="label">{{details.firstname}}</label><hr/>
+    <label class="label">Last Name:</label><label class="label">{{details.lastname}}</label><hr/>
+    <label class="label">Middle Name:</label><label class="label">{{details.middlename}}</label><hr/>
+    <label class="label">Suffix Name:</label><label class="label">{{details.suffix}}</label><hr/>
+    <label class="label">Aliases:</label><label class="label">{{details.aliases}}</label><hr/>
+
+    <h3 class="top-20">Basic Information</h3><hr/>
+    <label class="label">Gender:</label><label class="label">{{details.gender}}</label><hr/>
+    <label class="label">Civil Status:</label><label class="label">{{details.civilstatus}}</label><hr/>
+    <label class="label">Birth Date:</label><label class="label">{{details.birthdate}}</label><hr/>
+
+    <h3 class="top-20">Address</h3><hr/>
+    <label class="label">Address 1:</label><label class="label">{{details.address1}}</label><hr/>
+    <label class="label">Address 2:</label><label class="label">{{details.address2}}</label><hr/>
+    <label class="label">City:</label><label class="label">{{details.city}}</label><hr/>
+    <label class="label">State:</label><label class="label">{{details.state}}</label><hr/>
+    <label class="label">Country:</label><label class="label">{{details.country}}</label><hr/>
+    <label class="label">Zip Code:</label><label class="label">{{details.zip}}</label><hr/>
+</template>
+
+<template name="matching_info_public">
+    {{>ratings_public}}
+    {{>physician_patient_matching_public}}
+    {{>doctors_matching_public}}
+    {{>acceptdoctor}}
+</template>
+
+<template name="ratings_public">
+    <hr/>
+    <div class="col-xs-12 no-padd">
+        {{#each ratings}}
+            <div class="col-xs-12 col-sm-2 no-padd">
+                <label>{{trait}}</label>
+            </div>
+            <div class="col-xs-12 col-sm-10 no-padd">
+                <div class="progress ">
+                    <div class="progress-bar progress-bar-info" style="width:{{score}}%; background-color:{{color}}">{{score}}%</div>
+                </div>
+            </div>
+        {{/each}}
+
+    </div>
+    <hr/>
+</template>
+
+<template name="physician_patient_matching_public">
+    <div class="row"></div>
+    <hr/>
+    <h2 class="top-20">Physician-Patient Matching</h2>
+    <div class="alert alert-info">
+        After completing the Personality Questionnaire, Doctourz is able to identify Physicians that would be most appropriate to support your needs. This questionnaire is designed to match your profile with the right Physician using the DMA. Profiling will be based on the HMR (High-Match Rating) results.
+    </div>
+</template>
+
+<template name="doctors_matching_public">
+    <div class="row"></div>
+    <hr/>
+    <h2 class="top-20">(DMA) Doctourz Matching Algorithm</h2>
+    <div class="alert alert-info">
+        All information input would be utilized to filter Physicians that would match your profile and fit your preferences.
+    </div>
+</template>
+
+<template name="acceptdoctor">
+    {{#if equals user.status 'applicant'}}
+        <div class="alert alert-success top-20">
+            This Applicant applied for the physician position.<button class="btn btn-success btn-sm hirebutton" id={{user._id}}>Click here to hire</button>
+        </div>
+    {{/if}}
+
+    {{#if equals user.status 'physician'}}
+        <div class="alert alert-success top-20">
+           Hired last {{user.datehired}}<button class="btn btn-success btn-sm firebutton" id={{user._id}}>Click here to Remove</button>
+        </div>
+    {{/if}}
+</template>
+

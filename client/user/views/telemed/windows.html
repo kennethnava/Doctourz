@@ -1,0 +1,339 @@
+<template name="windows">
+    {{>window_appointment}}
+    {{>window_patient_records}}
+    {{>window_notes}}
+    {{>window_care_team}}
+    {{>window_diagnosis}}
+</template>
+
+<template name="window_appointment">
+    <div id="window_appointment" class="window_panel">
+        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_appointment')"><i class="fa fa-remove pull-right"></i></a>
+        <div class="col-xs-12 window_panel_inner">
+            <img src="/ss.png" class="col-xs-12 no-padd">
+        </div>
+
+        <div class="bottom-dock2">
+            <div class="floating-links ">
+                <a  class="btn custom-button-green  btn-block "  onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-compress  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn btn-primary btn-block hide"   onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn btn-primary btn-block hide"    onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn-block btn btn-primary  hide"   onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn  btn -primary btn-block hide"    onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand pull-right"></i></a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="window_patient_records">
+    <div id="window_patient_records" class="window_panel">
+        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_patient_records')"><i class="fa fa-remove pull-right"></i></a>
+        <div class="window_panel_inner">
+            <div class="col-xs-12">
+                <ul class="list-group ">
+                    <li class="list-group-item half-opac">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">HISTORY:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_name"></b>
+                                <table class="table table-striped table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Reason</th>
+                                            <th>Hospital</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each history}}
+                                            <tr>
+                                                <td>{{formatDate datefrom}}</td>
+                                                <td>{{formatDate dateTo}}</td>
+                                                <td>{{reason}}</td>
+                                                <td>{{hospital}}</td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item half-opac">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">MEDICATIONS:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_vitals"></b>
+                                <table class="table table-striped table-hover ">
+                                    <thead>
+                                    <tr>
+                                        <th>Condition</th>
+                                        <th>Description</th>
+                                        <th>Medications</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each conditions}}
+                                        <tr>
+                                            <td>{{condition}}</td>
+                                            <td>{{description}}</td>
+                                            <td>{{medications}}</td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item half-opac">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">ALLERGIES:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b>
+                                <table class="table table-striped table-hover ">
+                                    <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Particular</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each allergies}}
+                                        <tr>
+                                            <td>{{type}}</td>
+                                            <td>{{particular}}</td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item half-opac">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">PREVIOUS PHYSICIANS:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item half-opac">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">NAME:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b>
+                                <label class="fgray3">TELEPHONE:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b>
+                                <label class="fgray3">EMAIL:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item half-opac top-20">
+                        <div class="row">
+                            <div class="col-xs-12 padd-10">
+                                <label class="fgray3">X-RAYS,EKGS, ETC.:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b><br/>
+                                <div class="col-sm-3">
+                                    <div class="file-thumbnail">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="file-thumbnail">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="file-thumbnail">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="file-thumbnail">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="bottom-dock2">
+            <div class="floating-links ">
+                <a  class="btn btn-primary btn-block hide"  onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn  btn-block custom-button-green "   onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-compress  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn btn-primary btn-block hide"    onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn-block btn btn-primary  hide"   onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn  btn-primary btn-block hide"    onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand pull-right"></i></a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="window_notes">
+    <div id="window_notes" class="window_panel">
+        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_notes')"><i class="fa fa-remove pull-right"></i></a>
+            <div class="col-xs- padd-10 half-opac top-10">
+                <label>12:00 pm</label>
+                <p>Notes details here</p>
+            </div>
+        <div class="col-xs- padd-10 half-opac top-10">
+            <label>12:00 pm</label>
+            <p>Notes details here</p>
+        </div>
+        <div class="col-xs- padd-10 half-opac top-10">
+            <label>12:00 pm</label>
+            <p>Notes details here</p>
+        </div>
+        <div class="col-xs- padd-10 half-opac top-10">
+            <label>12:00 pm</label>
+            <p>Notes details here</p>
+        </div>
+        <div class="col-xs- padd-10 half-opac top-10">
+            <label>12:00 pm</label>
+            <p>Notes details here</p>
+        </div>
+
+
+        <div class="bottom-dock2">
+            <div class="floating-links ">
+                <a  class="btn btn-primary btn-block hide "  onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn btn-primary btn-block  hide"   onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn custom-button-green btn-block "   onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-compress pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn-block btn btn-primary   hide"   onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn  btn-primary btn-block hide"    onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand pull-right"></i></a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="window_care_team">
+    <div id="window_care_team" class="window_panel">
+        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_care_team')"><i class="fa fa-remove pull-right"></i></a>
+        {{#if equals level "physician"}}
+            <div class="col-sm-6">
+                <h3 class="">Your Care Team</h3>
+                {{#each careTeamPhysician}}
+
+                        <div class="col-sm-6 top-20">
+                            <div class="col-xs-12 half-opac padd-10">
+                                <img src="/dummy.jpg" style="width: 50px;" class="img-circle">
+                                <label>Name: {{name}}</label>
+                                <i class="fa fa-envelope pull-right" style="font-size: 30px;"></i>
+                            </div>
+                        </div>
+                {{/each}}
+            </div>
+            <div class="col-sm-6">
+                <h3 class="">You Patient's Care Team</h3>
+                {{#each careTeamPatient}}
+                    <div class="col-sm-6 top-20">
+                        <div class="col-xs-12 half-opac padd-10">
+                            <img src="/dummy.jpg" style="width: 50px;" class="img-circle">
+                            <label>Name:{{name}} </label>
+                            <i class="fa fa-envelope pull-right" style="font-size: 30px;"></i>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        {{#if equals level "patient"}}
+            <div class="col-sm-6">
+                <h3 class="">Your Care Team</h3>
+                {{#each careTeamPatient }}
+
+                    <div class="col-sm-6 top-20">
+                        <div class="col-xs-12 half-opac padd-10">
+                            <img src="/dummy.jpg" style="width: 50px;" class="img-circle">
+                            <label>Name: {{name}}</label>
+                            <i class="fa fa-envelope pull-right" style="font-size: 30px;"></i>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="col-sm-6">
+                <h3 class="">You Physicians Care Team</h3>
+                {{#each careTeamPhysician}}
+                    <div class="col-sm-6 top-20">
+                        <div class="col-xs-12 half-opac padd-10">
+                            <img src="/dummy.jpg" style="width: 50px;" class="img-circle">
+                            <label>Name:{{name}} </label>
+                            <i class="fa fa-envelope pull-right" style="font-size: 30px;"></i>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
+
+        <div class="bottom-dock2">
+            <div class="floating-links">
+                <a  class="btn btn-primary btn-block hide" onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block hide"  onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block hide"  onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn-block btn custom-button-green"  onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-compress pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block hide"  onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand pull-right"></i></a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="window_diagnosis">
+    <div id="window_diagnosis" class="window_panel">
+        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_diagnosis')"><i class="fa fa-remove pull-right"></i></a>
+        <div class="col-xs-12 window_panel_inner">
+            <textarea placeholder="DIAGNOSIS" class="form-control half-opac" style="height:500px;"></textarea>
+            <button class="btn btn-primary pull-right top-10 half-opac">Save</button>
+        </div>
+
+        <div class="bottom-dock2">
+            <div class="floating-links ">
+                <a  class="btn btn-primary btn-block hide"  onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn btn-primary btn-block  hide"   onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-expand  pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn btn-primary btn-block hide"   onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links ">
+                <a class="btn-block btn btn-primary  hide"   onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-expand pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn  custom-button-green btn-block"   onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-compress pull-right"></i></a>
+            </div>
+        </div>
+    </div>
+</template>

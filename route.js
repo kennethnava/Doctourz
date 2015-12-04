@@ -1,7 +1,6 @@
 
 Router.route('/', function () {
-    this.render('homepage');
-    this.layout('sitelayout');
+    this.render('index_home');
 });
 
 Router.route('/doctors', function () {
@@ -25,7 +24,6 @@ Router.route('/doctorslist', function () {
 //routes for the website registration
 Router.route('/userregistration', function () {
     this.render('userregistration');
-    this.layout('sitelayout');
 });
 
 Router.route('/doctorregistration', function () {
@@ -34,9 +32,35 @@ Router.route('/doctorregistration', function () {
 
 Router.route('/loginform', function () {
     this.render('loginform');
-    this.layout('sitelayout');
 });
 
+Router.route('/start_name', function () {
+    this.render('start_name');
+});
+
+Router.route('/start_gender', function () {
+    this.render('start_gender');
+});
+
+Router.route('/start_birthdate', function () {
+    this.render('start_birthdate');
+});
+
+Router.route('/start_location', function () {
+    this.render('start_location');
+});
+
+Router.route('/start_topics', function () {
+    this.render('start_topics');
+});
+
+Router.route('/start_anona', function () {
+    this.render('start_anona');
+});
+
+
+
+////////
 
 Router.route('/listall', function () {
     this.render('listall');
@@ -60,8 +84,13 @@ Router.route('/logout', function () {
     this.layout('sitelayout');
 });
 
+Router.route('/searchresult', function () {
+    this.render('search_result');
+    this.layout('sitelayout');
+});
+
 Router.route('/sample', function () {
-    this.render('sample');
+    this.render('sampleview');
 });
 
 

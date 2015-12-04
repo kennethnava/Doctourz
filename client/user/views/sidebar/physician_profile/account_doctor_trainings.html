@@ -1,0 +1,97 @@
+<template name="account_doctor_trainings">
+    <ul class="list-group top-30">
+        <li class="list-group-item">
+            <b class="_17 normal">Trainings</b>
+        </li>
+        {{#each trainings}}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <b class="normal" >{{name}}<br/><small>({{formatDate dateAttended}})</small></b>
+                        <i class="fa fa-pencil pull-right" id={{_id}} onclick="toggleElement('edit_diet')"></i>
+                        <i class="fa fa-remove pull-right delete" id={{_id}}></i>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="account_doctor_trainings_public">
+    <div class="col-xs-12 col-sm-12">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Specialization Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each trainings}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{dateAttended}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</template>
+
+
+<template name="trainings_form">
+<div class="col-xs-12 no-padd">
+    <div class="col-xs-12  no-padd">
+        <div class="panel panel-default top-20">
+            <div class="panel-heading">
+                New Training
+                <i class="fa fa-plus pull-right delete" id={{_id}} onclick="toggleElement('add_training')"></i>
+            </div>
+            <div class="panel-body" id="add_training">
+                <form>
+                    <div id="errorDiv"></div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="doctorId" class="hidden" value={{sessionId}}>
+                        <input type="text" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Date Attended</label>
+                        <input type="date" id="dateAttended" class="form-control">
+                    </div>
+                    <a href="/physicianprofile/edit" class="btn btn-default">Back</a>
+                    <button class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+
+<template name="account_doctor_trainings_update">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default top-20">
+            <div class="panel-heading">
+                New Training
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div id="errorDiv"></div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="trainingId" class="hidden" value={{trainings._id}}>
+                        <input type="text" id="name" class="form-control" value={{trainings.name}}>
+                    </div>
+                    <div class="form-group">
+                        <label>Date Attended</label>
+                        <input type="date" id="dateAttended" class="form-control" value={{trainings.dateAttended}}>
+                    </div>
+                    <a href="/physicianprofile/edit" class="btn btn-default">Back</a>
+                    <button class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

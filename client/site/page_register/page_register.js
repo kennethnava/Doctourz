@@ -13,8 +13,7 @@ if(Meteor.isClient){
             var username = template.find('#username').value;
             var password1 = template.find('#password1').value;
             var password2 = template.find('#password2').value;
-            var firstname = template.find('#firstname').value;
-            var lastname = template.find('#lastname').value;
+            var name = template.find('#name').value;
 
             if(Appusers.find({username:username}).count()>0){
                 template.find('#errorDiv').setAttribute("class","alert alert-danger");
@@ -29,12 +28,17 @@ if(Meteor.isClient){
                 Appusers.insert({
                         username: username,
                         password: password1,
-                        lastname: lastname,
-                        firstname: firstname,
+                        name: name,
                         level: "user",
                         public: false,
                         avatar: "dummy.jpg",
-                        dateregistered: new Date()
+                        level: "patient",
+                        dateregistered: new Date(),
+
+                        gender: "unspecified",
+                        location: "unspecified",
+                        goals: "unspecified",
+                        doctors: "unspecified"
                     },
                     function(error,result){
 

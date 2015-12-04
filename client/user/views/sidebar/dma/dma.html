@@ -1,0 +1,75 @@
+<template name="dmalayout">
+    <button data-toggle="modal" data-target="#modal1" class="btn btn-primary btn-block">GUIDE ME</button>
+    {{>ratings}}
+    {{>modal2}}
+    ldkfgkljdfslgjdfskjg
+</template>
+
+
+<template name="ratings">
+    <hr/>
+    <div class="col-xs-12 no-padd">
+        {{#each ratings}}
+            <div class="col-xs-12 col-sm-6 no-padd">
+                <label class="fblue10" >{{trait}}</label>
+            </div>
+            <div class="col-xs-12 col-sm-6 no-padd">
+                <div class="progress ">
+                    <div class="progress-bar progress-bar-info" style="width:{{score}}%; background-color:{{color}}">{{score}}%</div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <hr/>
+</template>
+
+
+<template name="modal2">
+    <div class="modal fade" id="modal1">
+        <form>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="myTabContent" class="tab-content">
+                                    {{#each questions}}
+                                        <div class="tab-pane fade active in" id=tab{{_id}}>
+                                            <h4>{{question}}<label class="pull-right"></label></h4>
+                                            <hr/>
+                                            {{#if equals negative true}}
+                                                <div class="form-group">
+                                                    <label><input  id=1llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}}  value="1"> Strongly Agree</label><br/>
+                                                    <label><input  id=2llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="2"> Agree</label><br/>
+                                                    <label><input  id=3llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="3"> Neither Agree nor Disagree</label><br/>
+                                                    <label><input  id=4llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="4"> Disagree</label><br/>
+                                                    <label><input  id=5llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="5"> Strongly Disagree</label><br/>
+                                                </div>
+                                            {{else}}
+                                                <div class="form-group">
+                                                    <label><input  id=5llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="5"> Strongly Agree</label><br/>
+                                                    <label><input  id=4llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="4"> Agree</label><br/>
+                                                    <label><input  id=3llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="3"> Neither Agree nor Disagree</label><br/>
+                                                    <label><input  id=2llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="2"> Disagree</label><br/>
+                                                    <label><input  id=1llllllllll{{_id}}llllllllll{{traits_id}} type="radio"  name={{_id}} value="1"> Strongly Disagree</label><br/>
+                                                </div>
+                                            {{/if}}
+                                        </div>
+                                    {{/each}}
+                                </div>
+
+                                <div class="col-xs-12 top-20">
+                                    {{#each questions}}
+                                        <a href=#tab{{_id}} data-toggle="tab" class="btn btn-primary btn-xs">1</a>
+                                    {{/each}}
+                                </div>
+
+                                <button type="submit" class="btn btn-primary pull-right" id="saveSurvey">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

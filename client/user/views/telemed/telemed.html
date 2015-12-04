@@ -1,0 +1,142 @@
+<template name="telemed">
+    <div class="bottom-dock">
+        <div class="floating-links">
+            <a  class="btn btn-primary btn-block" onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand pull-right"></i></a>
+        </div>
+        <div class="floating-links">
+            <a class="btn btn-primary btn-block"  onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-expand  pull-right"></i></a>
+        </div>
+        <div class="floating-links">
+            <a class="btn btn-primary btn-block"  onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-expand  pull-right"></i></a>
+        </div>
+        <div class="floating-links">
+            <a class="btn btn-primary btn-block"  onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-expand  pull-right"></i></a>
+        </div>
+        <div class="floating-links">
+            <a class="btn btn-primary btn-block"  onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand  pull-right"></i></a>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-12 no-padd" style="position: relative;">
+        {{>panel_left}}
+
+        <video id="theirVideo" class="theirVideo" autoplay></video>
+
+        <div id="telemed_controls" class="text-center">
+            <img class="pull-left img-circle" style="width: 60px; margin: 5px 0px 0px 10px;" src=/{{avatars.myavatar}}>
+            <i  class="fa fa-volume-up"></i>
+            <i id="videocallNow" class="fa fa-video-camera"></i>
+            <i class="fa fa-phone"></i>
+            <img class="pull-right img-circle" style="width: 60px; margin: 5px 10px 0px 0px;" src=/{{avatars.youravatar}}>
+        </div>
+
+        <div id="myVideoFrame">
+            <video id="myVideo" muted="true" class="myVideo" autoplay></video>
+        </div>
+
+        {{>panel_right}}
+
+    </div>
+
+
+</template>
+
+<template name="panel_left">
+    <div class="col-md-3 no-padd bgwhitetrans" id="panel_left1">
+        <div class="panel panel-primary bgwhitetrans">
+            <div class="panel-heading">
+                INFO
+                <i class="fa fa-arrows-alt pull-right"></i>
+            </div>
+                <ul class="list-group bgtrans">
+                    <li class="list-group-item transparent">
+                        <p class="hidden">Your id: <span id="myPeerId">...</span></p>
+                        <input type="text" class="hidden" placeholder="Call user id..." id="remotePeerId">
+                        {{#each users}}
+                                <img src=/{{avatar}} class="img-circle point" style="width: 30px;margin-right:3px;border: solid 4px greenyellow;" id={{_id}} title={{name}}>
+                        {{/each}}
+                    </li>
+                    <li class="list-group-item transparent">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">PATIENT:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_name1">{{currentCaller.name}}</b>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item transparent">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">VITALS:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_vitals"></b>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item transparent">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">AGE:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_age"></b>
+                                <label class="fgray3">SEX:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_sex"></b>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item transparent">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="fgray3">BP:&nbsp;&nbsp;&nbsp;&nbsp;</label><b class="normal fgray3" id="patient_bp"></b>
+                                <textarea style="height:170px;" placeholder="Write our text here" class="form-control half-opac"></textarea>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+        </div>
+    </div>
+</template>
+
+<template name="panel_right">
+
+    <div class="col-md-3 no-padd bgwhitetrans" id="panel_right">
+        <div style="position: relative;height: 70vh;" class="col-xs-12 no-padd">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    CHAT
+                    <i class="fa fa-arrows-alt pull-right"></i>
+                </div>
+                <div class="panel-body bgtrans no-padd">
+                    <div class="col-xs-12 no-padd" style="min-height: 60vh;max-height: 60vh;overflow-y: scroll;">
+                        <ul class="list-group bgtrans">
+                            {{#each messages}}
+                                <li class="list-group-item half-opac">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <img class="img-circle" style="width: 25px;" src=/{{senderAvatar}}><b>{{senderName}}</b>
+                                            <img class="img-circle pull-right" style="width: 25px;" src=/{{receiverAvatar}}><b class="pull-right">{{receiverName}}</b>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <p>{{message}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 no-padd" style="position: absolute; bottom: 0px; left: 0px;">
+                        <div class="col-xs-12 bgtrans no-padd" >
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control no-radius" id="chatMessage" placeholder="Type your message...">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary no-radius send" >Send</button>
+                            </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</template>

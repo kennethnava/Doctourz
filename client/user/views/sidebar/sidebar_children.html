@@ -1,0 +1,136 @@
+<template name="sidebar_children">
+    {{>notifications}}
+    {{>healthProfile}}
+    {{>physicianProfile}}
+    {{>dma}}
+    {{>consults}}
+    {{>answers}}
+    {{>doctorsMatches}}
+    {{>files}}
+    {{>topics}}
+    {{>peopleYouCareFor}}
+    {{>inviteFriendsAndFamily}}
+    {{>helpAndSupport}}
+    {{>settings}}
+
+</template>
+
+<template name="notifications">
+    <div class="sidebar-child " id="notifications">
+        <div class="col-xs-12 profileThumb">
+            healthProfile
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="healthProfile">
+    <div class="sidebar-child" id="healthProfile">
+        {{>healthProfileLayout}}
+    </div>
+</template>
+
+<template name="physicianProfile">
+    <div class="sidebar-child" id="physicianProfile">
+        {{>physician_profile_layout}}
+    </div>
+</template>
+
+<template name="dma">
+    <div class="sidebar-child" id="dma">
+        {{>dmalayout}}
+    </div>
+</template>
+
+<template name="consults">
+    <div class="sidebar-child" id="consults">
+        <div class="col-xs-12 profileThumb">
+            consults
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="answers">
+    <div class="sidebar-child" id="answers">
+        <div class="col-xs-12 profileThumb">
+            answers
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="doctorsMatches">
+    <div class="sidebar-child" id="doctorsMatches">
+        <div class="col-xs-12 profileThumb">
+            doctorsMatches
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="files">
+    <div class="sidebar-child" id="files">
+        <div class="col-xs-12 profileThumb">
+            files
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="topics">
+    <div class="sidebar-child" id="topics">
+        <div class="col-xs-12 profileThumb">
+            topics
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="peopleYouCareFor">
+    <div class="sidebar-child" id="peopleYouCareFor">
+        <div class="col-xs-12 profileThumb">
+            peopleYouCareFor
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="inviteFriendsAndFamily">
+    <div class="sidebar-child" id="inviteFriendsAndFamily">
+        <div class="col-xs-12 profileThumb">
+            inviteFriendsAndFamily
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="helpAndSupport">
+    <div class="sidebar-child" id="helpAndSupport">
+        <div class="col-xs-12 profileThumb">
+            helpAndSupport
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+<template name="settings">
+    <div class="sidebar-child" id="settings">
+        <div class="col-xs-12 profileThumb">
+            settings
+            <img src="/dummy.jpg" class="col-xs-12">
+        </div>
+    </div>
+</template>
+
+
+<template name="samplecontent">
+    <div class="top-20 col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="profileThumb">
+            <div class="row">
+                {{>userprofile}}
+            </div>
+        </div>
+    </div>
+</template>
+

@@ -13,11 +13,22 @@ if(Meteor.isClient){
 
                 user = Appusers.findOne({username:username,password:password});
 
-                if(user.level=='admin'){
+                sessionStorage.setItem('userId', user._id);
+
+                if(user.gender=='unspecified'){
+                    Router.go('/start_name');
+                }
+                else{
+                    updateOnce();
+                    updateLog();
+                    Router.go('/news');
+                }
+
+                /*if(user.level=='admin'){
                     sessionStorage.setItem('adminId','valid');
                 }
                 sessionStorage.setItem('userId', user._id)
-                Router.go('/profile');
+                Router.go('/feeds');*/
             }
             else
             {

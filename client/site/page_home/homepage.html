@@ -44,47 +44,77 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+
+            <div class="searchbar col-xs-12">
+                <form>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>SPECIALIZATION</label>
+                        <select id="specialization" class="form-control">
+                            {{#each specializations}}
+                                <option>{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <label>LOCATION</label>
+                        <select id="location" class="form-control">
+                            {{#each locations}}
+                                <option>{{state}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <label>APPOINTMENT DATE</label>
+                        <input type="date" class="form-control"/>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <button class="btn btn-primary top-20 block">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="row"></div>
 
-    <div class="col-xs-12">
-        <div class="searchbar col-xs-12">
-            <div class="col-xs-12 col-sm-3">
-                <label>DOCTOR SPECIALIZATION</label>
-                <select class="form-control">
-                    <option>Cardiology</option>
-                </select>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-                <label>LOCATION</label>
-                <select class="form-control">
-                    <option>Ortigas</option>
-                </select>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-                <label>APPOINTMENT DATE</label>
-                <input type="date" class="form-control"/>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-                <button class="btn btn-primary top-20 block">Search</button>
-            </div>
-        </div>
-    </div>
+
 
     <div class="col-xs-12">
         <img src="/med_03.jpg" class="col-xs-12 no-padd">
     </div>
 
-    <div class="col-xs-12 text-center">
+    <div class="col-xs-12 text-center top-20 blue">
         <div class="col-sm-4">
+            <img src="/concierge.png">
             <h1>Learn More</h1>
+            <p>Helpful and personalized answers,
+                tips, news, and app recommendations
+                from top doctors! </p>
         </div>
         <div class="col-sm-4">
+            <img src="/referrals.png">
             <h1>Get Help</h1>
+            <p>Talk to a doctor whenever,
+                wherever, share photos or test results, and
+                get immediate answers, prescriptions,
+                and referrals to help you feel good!</p>
         </div>
         <div class="col-sm-4">
+            <img src="/news.png">
             <h1>News</h1>
+            <p>
+                Helpful and personalized answers,
+                tips, news, and app recommendations
+                from top doctors!
+            </p>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="col-sm-6 tile">
+            <h1>Leading the Pack</h1>
+            <p>Dr. Roland Balburias is an Internal Medicine specialist and an expert in Adult Diseases.
+                He has over 16 years of experience in the medical field and can be seen on Pinoy M.D. a
+                local medical informative TV show on the GMA network.</p>
         </div>
     </div>
 </template>

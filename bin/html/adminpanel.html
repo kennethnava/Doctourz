@@ -1,0 +1,142 @@
+<template name="admin_panel_layout">
+    <div class="col-xs-12 top-20">
+        <div  style="max-width:1180px; margin: 0 auto;">
+            {{>site_navibar}}
+                <div class="row">
+
+                </div>
+                <div class="col-xs-12">
+                    <hr/>
+                </div>
+                <div class="col-xs-12 no-padd">
+                    <div class="col-sm-12 no-padd">
+                        {{>admin_sidebar}}
+
+                    </div>
+                    <div class="col-sm-12 no-padd">
+                        {{>yield}}
+                    </div>
+                </div>
+            {{>site_footer}}
+        </div>
+    </div>
+</template>
+
+<template name="admin_sidebar">
+    <div class="col-xs-12">
+        <a href="home" class="btn btn-primary btn-sm">Home</a>
+        <a href="applicants" class="btn btn-primary btn-sm">Applicants</a>
+        <a href="physicians" class="btn btn-primary btn-sm">Physician</a>
+        <a href="patients" class="btn btn-primary btn-sm">Patient</a>
+        <a href="clinincs" class="btn btn-primary btn-sm">Clinics</a>
+        <a href="questionaire" class="btn btn-primary btn-sm">Personality check</a>
+    </div>
+
+</template>
+
+<template name="admin_panel_home">
+    <div class="col-xs-12">
+        <hr/>
+        ;lsdkf;lksd;lfk;sldkf
+    </div>
+</template>
+
+<template name="physician_panel">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-xs-12 bottom-20">
+            <form>
+                <button class="btn btn-primary pull-right no-radius">Search</button>
+                <input type="text" class="form-control searchfield pull-right no-radius" placeholder="Search">
+
+            </form>
+        </div>
+        {{#each users}}
+            <div class="col-sm-3">
+                <div class="col-xs-12 profileThumb2">
+                    <img src=/{{avatar}} >
+                    <label class="name">{{firstname}} {{middlename}}, {{lastname}}</label><br/>
+                    <label class="spec">{{country}}</label>
+                    <br/>
+                    <button  class="btn btn-primary btn-sm viewprofile" id={{_id}}>Review Profile</button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="applicant_panel">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-xs-12 bottom-20">
+            <form>
+                <button class="btn btn-primary pull-right no-radius">Search</button>
+                <input type="text" class="form-control searchfield pull-right no-radius" placeholder="Search">
+
+            </form>
+        </div>
+        {{#each users}}
+            <div class="col-sm-3">
+                <div class="col-xs-12 profileThumb2">
+                    <img src=/{{avatar}} >
+                    <label class="name">{{firstname}} {{middlename}}, {{lastname}}</label><br/>
+                    <label class="spec">{{country}}</label>
+                    <br/>
+                    <button  class="btn btn-primary btn-sm viewprofile" id={{_id}}>Review Profile</button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="patient_panel">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-xs-12 bottom-20">
+            <form>
+                <button class="btn btn-primary pull-right no-radius">Search</button>
+                <input type="text" class="form-control searchfield pull-right no-radius" placeholder="Search">
+            </form>
+        </div>
+        {{#each users}}
+            <div class="col-sm-3 top-20">
+                <div class="col-xs-12 profileThumb2">
+                    <img src=/{{avatar}} >
+                    <label class="name">{{firstname}} {{middlename}}, {{lastname}}</label><br/>
+                    <label class="spec">{{country}}</label>
+                    <br/>
+                    <button  class="btn btn-primary btn-sm viewprofile" id={{_id}}>Review Profile</button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>
+
+
+<template name="user_profile_review">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-sm-12 profileThumb2 top-20">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#personal" data-toggle="tab">Personal info</a></li>
+                <li><a href="#training" data-toggle="tab">Professional Details</a></li>
+                <li><a href="#professional" data-toggle="tab">Medical Details</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="personal">
+                    {{>userprofile_public}}
+                </div>
+                <div class="tab-pane fade" id="training">
+                    <div class="col-xs-12">
+                        {{>physicianprofile_public}}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="professional">
+                    <div class="col-xs-12">
+                        {{>medicalprofile_public}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

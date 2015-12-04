@@ -1,0 +1,123 @@
+<template name="account_patient_medical_conditions">
+    <div class="col-xs-12">
+        {{>account_patient_medical_conditions_list}}
+    </div>
+</template>
+
+<template name="account_patient_medical_conditions_public">
+    <div class="col-xs-12">
+        {{>account_patient_medical_conditions_list_public}}
+    </div>
+</template>
+
+<template name="account_patient_new_medical_condition">
+    <div class="col-xs-12 no-padd">
+        <div class="col-sm-12 no-padd">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    New Medical Condition
+                    <i class="fa fa-plus pull-right" onclick="toggleElement('add_condition')"></i>
+                </div>
+                <div class="panel-body no-display" id="add_condition">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <input type="text" class="hidden" id="patientId" value={{sessionId}} >
+                        <div class="form-group">
+                            <label>Medical Condition</label>
+                            <input type="text" class="form-control " id="condition">
+                        </div>
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <textarea class="form-control " id="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Medications</label><small style="color:red;">list all medications for this condition sepatated by comma (,)</small>
+                            <textarea class="form-control " id="medications"></textarea>
+                        </div>
+                        <a class="btn btn-default" href="edit">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+</template>
+
+
+
+<template name="account_patient_medical_conditions_list">
+    <ul class="list-group top-20">
+        <li class="list-group-item">
+            <b class="_17 normal">Medical Conditions</b>
+        </li>
+        {{#each record}}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <b class="normal" title={{description}}>{{condition}}<br/><small>({{medications}})</small></b>
+                        <i class="fa fa-pencil-square-o pull-right" onclick="toggleElement('name_edit')"></i>
+                        <i  class="fa fa-remove pull-right delete" id={{_id}}></i>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</template>
+
+
+
+<template name="account_patient_medical_conditions_list_public">
+    <table class="table table-striped table-hover top-20">
+        <thead>
+        <tr>
+            <th>Condition</th>
+            <th>Desription</th>
+            <th>Medications</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each record}}
+            <tr>
+                <td>{{condition}}</td>
+                <td>{{description}}</td>
+                <td>{{medications}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+
+
+<template name="account_patient_medical_condition_update">
+    <div class="col-xs-12">
+        <hr/>
+        <div class="col-sm-6 col-sm-offset-3 top-20">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Update Medical Condition
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <input type="text" class="hidden" id="patientId" value={{data._id}} >
+                        <div class="form-group">
+                            <label>Medical Condition</label>
+                            <input type="text" class="form-control " id="condition" value={{data.condition}}>
+                        </div>
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <textarea class="form-control " id="description">{{data.description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Medications</label><small style="color:red;">list all medications for this condition sepatated by comma (,)</small>
+                            <textarea class="form-control " id="medications">{{data.medications}}</textarea>
+                        </div>
+                        <a class="btn btn-default" href="../edit">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

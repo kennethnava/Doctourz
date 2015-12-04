@@ -37,6 +37,7 @@ email@1.0.7
 es5-shim@4.1.13
 fastclick@1.0.7
 geojson-utils@1.0.4
+gquemart:meteor-reactive-fullcalendar@1.0.1
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5
@@ -68,7 +69,10 @@ mobile-status-bar@1.0.6
 momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
+mrt:jquery-ui@1.9.2
+mrt:moment@2.8.1
 msavin:mongol@1.4.0
+nahue:simple-line-icons@1.0.0
 natestrauser:font-awesome@4.4.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
@@ -83,6 +87,7 @@ reload@1.1.4
 retry@1.0.4
 richsilv:owl-carousel@0.1.0
 routepolicy@1.0.6
+rzymek:fullcalendar@2.4.0_1
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4

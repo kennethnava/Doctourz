@@ -1,0 +1,134 @@
+<template name="telemed_layout">
+    <div id="cover" onclick="fadeActive()" onmouseover="expandSidebar()">
+
+    </div>
+
+    {{>windows}}
+    <div id="wrapper">
+
+
+
+        <!-- Navigation -->
+        <nav class="navbar-custom navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- /.navbar-header -->
+            <div class="navbar-default sidebar" role="navigation"  id="sidebar" onmouseover="expandSidebar()" >
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav sibebar-menu" id="side-menu">
+                        <li style="height: 200px;">
+                            <img src="/dummy.jpg"  class="img-responsive img-circle" style="margin:0 auto; max-width:100px; width: 90%;">
+                            <div class="name-section top-20" id="name-section">
+                                <h4 class="text-center">Hi Rex!</h4>
+                                <div class="name-section-button">Get help now</div>
+                            </div>
+                        </li>
+                        <li>
+                            <a onclick="toggleView('notifications')"><i class="fa fa-bell-o fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Notifications</a>
+                        </li>
+                        <li>
+                            <a onclick="toggleView('healthProfile')" ><i class="fa fa-user fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Health Profile</a>
+                        </li>
+                        <li>
+                            <a onclick="toggleView('physicianProfile')" ><i class="fa fa-user-md fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Professional Profile</a>
+                        </li>
+                        <li>
+                            <a  onclick="toggleView('dma')" ><i class="fa fa-adjust fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;DMA</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-user-md fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Consults</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-comments fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Answers</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-users fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Doctors Matches</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-folder-o fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Files</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-file-text-o fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Topics</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-user-plus fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;People you care for</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-envelope-o fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Invite friends and family</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-question-circle fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Help and Support</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-cog fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Settings</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-arrow-right fa-fw sidebar-icon"></i>&nbsp;&nbsp;&nbsp;Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+
+
+        <div id="page-wrapper" class="no-padd">
+            {{>sidebar_children}}
+            <!-- /.row -->
+
+
+            <div style="max-height: 100vh; overflow-y:scroll; overflow-x:hidden;">
+                <div class="col-xs-12 main-content"  onmouseover="collapseSidebar()">
+                    <div class="topbar-admin col-xs-12">
+                        <img src="/logo.png" style="max-width: 180px; margin: 15px 0 0 10px;margin-left:70px;">
+                        <div class="col-xs-12 col-sm-6 pull-right">
+                            <a class="custom-gray fhoverblue5" href="/to_do"><span class="item-bordered-left pull-right item-bordered-right">
+                                <i class="fa fa-list"></i><br/>
+                                To-do
+                            </span></a>
+                            <a class="custom-gray fhoverblue5" href="/search_landing"><span class="item-bordered-left pull-right item-bordered-right">
+                                <i class="fa fa-search"></i><br/>
+                                Search
+                            </span></a>
+                            <a class="custom-gray fhoverblue5" href="/news"><span class="item-bordered-left pull-right item-bordered-right">
+                                <i class="fa fa-newspaper-o"></i><br/>
+                                News
+                            </span></a>
+                            <a class="custom-gray fhoverblue5" href="/ask_doctor"><span class="item-bordered-left pull-right item-bordered-right">
+                                <i class="fa fa-user-md"></i><br/>
+                                Ask doctor
+                            </span></a>
+                            <a class="custom-gray fhoverblue5" href="/adminhome"><span class="item-bordered-left pull-right item-bordered-right">
+                                <i class="fa fa-cog"></i><br/>
+                                Admin Panel
+                            </span></a>
+                            <a class="custom-gray fhoverblue5" href="/telemed"><span class="item-bordered-left pull-right item-bordered-right">
+                                <i class="fa fa-video-camera"></i><br/>
+                                Telemed
+                            </span></a>
+
+
+                            <input type="text" id="status" class="hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="col-xs-12" id="contentArea">
+                        <div class="row">
+                            {{>yield}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+</template>

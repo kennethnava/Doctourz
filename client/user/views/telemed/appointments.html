@@ -1,0 +1,27 @@
+<template name="appointments">
+    <div class="col-xs-12 no-padd">
+        <div class="top-dock">
+            <div class="floating-links">
+                <a href="/appointments" class="btn btn-primary btn-block">APPOINTMENTS <i class="fa fa-arrows-alt pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block">PATIENT RECORDS <i class="fa fa-arrows-alt pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block">NOTES <i class="fa fa-arrows-alt pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block">CARE TEAM<i class="fa fa-arrows-alt pull-right"></i></a>
+            </div>
+            <div class="floating-links">
+                <a class="btn btn-primary btn-block">DIAGNOSIS <i class="fa fa-arrows-alt pull-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 bgwhite padd-20">
+        {{> fullcalendar defaultView='agendaWeek'}}
+    </div>
+    <div class="col-sm-3 bgwhite padd-20">
+        {{> fullcalendar  id="myCalendar"}}
+    </div>
+</template>

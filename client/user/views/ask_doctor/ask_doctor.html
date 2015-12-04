@@ -1,0 +1,93 @@
+<template name="ask_doctor">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-sm-offset-3">
+            <div class="col-xs-12 bgblue5 padd-10">
+                <h3 class="fblue10 text-center">When would you like help?</h3>
+            </div>
+            <div class="col-xs-12 padd-10 bgwhite">
+                <div class="col-xs-12 text-center">
+                    <label>Now</label><br/>
+                    <b class="fgray3 normal">by video, vioce, or text chat with a<br/> primary care doctor ($)</b><br/>
+                    <a href="/ask_doctor_p1" class="btn btn-primary top-20 bottom-20">CHOOSE</a>
+                    <hr/>
+                </div>
+            </div>
+            <div class="col-xs-12 padd-10 bgwhite">
+                <div class="col-xs-12 text-center">
+                    <label>Within a day</label><br/>
+                    <b class="fgray3 normal">What kind of help would you like?<br/>Private medical consult)</b><br/>
+                    <button class="btn btn-primary top-20 bottom-20">CHOOSE</button>
+                    <hr/>
+                </div>
+            </div>
+            <div class="col-xs-12 padd-10 bgwhite">
+                <div class="col-xs-12 text-center">
+                    <label>Schedule an appointment</label><br/>
+                    <b class="fgray3 normal">by video, vioce, or text chat</b><br/>
+                    <button class="btn btn-primary top-20 bottom-20">CHOOSE</button>
+                    <hr/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
+
+<template name="ask_doctor_p1">
+    <div class="row">
+        <h5 class="text-center fgray2 _17">Privately consult a primary care doctor on call</h5>
+        <div class="col-xs-12 col-md-6 col-sm-offset-3">
+            <div class="col-xs-12 padd-10 bgwhite">
+                <h5 class="text-center fgray2 _17">What would you like to consult the doctor about?<i class="fa fa-question-circle"></i></h5>
+                <div class="forn-group">
+                    <textarea class="form-control" style="height:80px;" placeholder="Share a detailed description of your symptoms, concerns, and how you'd like the doctor to help you. Attach images and files as necessary."></textarea>
+                </div>
+                <hr/>
+                <div class="col-xs-12">
+                    <label class="_17">Name: </label><b class="_17 normal">{{basicInfo.name}}</b><br/>
+                    <hr/>
+                    <label class="_17">Birthdate: </label><b class="_17 normal">{{ formatDate basicInfo.birthdate}}</b><br/><hr/>
+                    <label class="_17">Gender: </label><b class="_17 normal">{{basicInfo.gender}}</b><br/>
+                </div>
+                <hr/>
+                <h5 class="text-center fgray2 _17">Additional Information</h5>
+
+                <div class="col-xs-12">
+                    <ul class="list-group top-20">
+                        <li class="list-group-item">
+                            <b class="_17 normal">Medical Conditions</b>
+                        </li>
+                        {{#each conditions}}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <b class="normal">{{condition}} - {{description}}<br/><small>({{medications}})</small></b>
+                                    </div>
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ul>
+
+                    <ul class="list-group top-20">
+                        <li class="list-group-item">
+                            <b class="_17 normal">Allergies</b>
+                        </li>
+                        {{#each allergies}}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <b class="normal">{{particular}}<br/><small>({{type}})</small></b>
+                                    </div>
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-12 padd-10 bgwhite text-center to-20">
+                <button class="btn btn-primary">Continue</button>
+            </div>
+        </div>
+    </div>
+</template>

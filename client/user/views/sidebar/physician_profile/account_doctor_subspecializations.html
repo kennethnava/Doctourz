@@ -1,0 +1,117 @@
+<template name="account_doctor_subspecializations">
+
+    <ul class="list-group top-30">
+        <li class="list-group-item">
+            <b class="_17 normal">Afiliations</b>
+        </li>
+        {{#each subspecializations}}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <b class="normal" title={{description}}>{{name}}<br/><small>({{specialization}})</small></b>
+                        <i class="fa fa-pencil pull-right" id={{_id}} onclick="toggleElement('edit_diet')"></i>
+                        <i class="fa fa-remove pull-right delete" id={{_id}}></i>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="account_doctor_subspecializations_public">
+
+    <div class="col-xs-12 col-sm-12">
+        <table class="table table-striped table-hover top-20">
+            <thead>
+            <tr>
+                <th>Specialization Name</th>
+                <th>Sub-specialization Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each subspecializations}}
+                <tr>
+                    <td>{{specialization}}</td>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+
+</template>
+
+
+<template name="subspecializations_form">
+    <div class="col-xs-12 no-padd">
+        <div class="col-xs-12 no-padd">
+            <div class="panel panel-default top-20">
+                <div class="panel-heading">
+                    New Sub-specialization
+                    <i class="fa fa-plus pull-right delete" id={{_id}} onclick="toggleElement('add_subspecialization')"></i>
+                </div>
+                <div class="panel-body no-display" id="add_subspecialization">
+                    <form>
+                        <div id="errorDiv"></div>
+                        <div class="form-group">
+                            <label>Specialization</label>
+                            <select class="form-control" id="specialization">
+                                {{#each specializations}}
+                                    <option>{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="doctorId" class="hidden" value={{sessionId}}>
+                            <input type="text" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" id="description" class="form-control">
+                        </div>
+                        <a href="/physicianprofile/edit" class="btn btn-default">Back</a>
+                        <button class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="doctor_subspecialization_update">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default top-20">
+            <div class="panel-heading">
+                Edit Sub-specialization
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div id="errorDiv"></div>
+                    <div class="form-group">
+                        <label>Specialization</label>
+                        <select class="form-control" id="specialization">
+                            {{#each specializations}}
+                                <option>{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="subId" class="hidden" value={{subspecializations._id}}>
+                        <input type="text" id="name" class="form-control" value={{subspecializations.name}}>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="description" class="form-control" value={{subspecializations.description}}>
+                    </div>
+                    <a href="/physicianprofile/edit" class="btn btn-default">Back</a>
+                    <button class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

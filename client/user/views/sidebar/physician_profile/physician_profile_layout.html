@@ -1,0 +1,43 @@
+<template name="physician_profile_layout">
+    <ul class="nav nav-pills">
+        <li class="dropdown pull-right">
+            <a class="dropdown-toggle bggray5 pull-right" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#afiliations" data-toggle="tab">Afiliations</a></li><li class="divider"></li>
+                <li><a href="#procedures" data-toggle="tab">Procedures</a></li><li class="divider"></li>
+                <li><a href="#specializations" data-toggle="tab">Specializations</a></li><li class="divider"></li>
+                <li><a href="#sub-specializations" data-toggle="tab">Sub-specializations</a></li><li class="divider"></li>
+                <li><a href="#education" data-toggle="tab">Education</a></li><li class="divider"></li>
+                <li><a href="#trainings" data-toggle="tab">Trainings</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="afiliations">
+            {{>account_doctor_affilliations}}
+            {{>affiliations_form}}
+        </div>
+        <div class="tab-pane fade" id="procedures">
+            {{>account_doctor_procedures}}
+            {{>procedures_form}}
+        </div>
+        <div class="tab-pane fade" id="specializations">
+            {{>account_doctor_specializations}}
+            {{>specializations_form}}
+        </div>
+        <div class="tab-pane fade" id="sub-specializations">
+            {{>account_doctor_subspecializations}}
+            {{>subspecializations_form}}
+        </div>
+        <div class="tab-pane fade" id="education">
+            {{>account_doctor_education}}
+            {{>education_form}}
+        </div>
+        <div class="tab-pane fade" id="trainings">
+            {{>account_doctor_trainings}}
+            {{>trainings_form}}
+        </div>
+    </div>
+</template>
