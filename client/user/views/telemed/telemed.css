@@ -41,10 +41,10 @@
 .bottom-dock{
     position: fixed;
     bottom: 0px;
-    left: 60px;
-    width: 95%;
-    height:auto;
+    width: 100%;
+    height: auto;
     z-index: 9999999;
+    left: 50px;
 }
 
 .bottom-dock2{
@@ -215,29 +215,27 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    max-height: 40px;
+    max-height: 60px;
 }
 
 ul.tabs{
-    margin: 0 auto;
     list-style-type : none;
     line-height : 40px;
-    max-height: 40px;
+    max-height: 60px;
     overflow: hidden;
     display: inline-block;
-    padding-right: 100px;
+    width: 100%;
 }
 ul.tabs > li{
-    background-color:#1995dc;
-    float : right;
-    margin : 5px -10px 0;
+    background-color: #1995DC;
+    float: left;
     border-top-right-radius: 25px 170px;
     border-top-left-radius: 20px 90px;
-    padding : 0 30px 0 25px;
-    height: 170px;
-    position : relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,.5);
-    max-width : 400px;
+    padding: 0px 30px 0px 25px;
+    height: 200px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    margin: 10px -10px 0px;
 }
 ul.tabs > li.active {
     z-index: 2;
@@ -256,10 +254,20 @@ ul.tabs > li > a{
     color: white;
     width: 170px;
     font-weight: bold;
+    padding-top: 10px;
+    font-size: 12px;
+}
+ul.tabs > li > a:hover{
+    cursor: hand;
 }
 .disabled{
     pointer-events:none;
     opacity:0.4;
+}
+.expandable {
+    padding-left: 10px;
+    padding-bottom: 20px;
+    color: white;
 }
 
 /* Clear Fix took for HTML 5 Boilerlate*/
