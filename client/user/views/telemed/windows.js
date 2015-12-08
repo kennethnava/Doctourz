@@ -1,9 +1,11 @@
 if(Meteor.isClient){
     Template.window_care_team.helpers({
         level: function(){
-            var id = sessionStorage.getItem('userId');
-            var user  = Appusers.findOne({_id:id});
-            return user.level;
+            if(sessionStorage.getItem('currentCaller')){
+                var id = sessionStorage.getItem('userId');
+                var user  = Appusers.findOne({_id:id});
+                return user.level;
+            }
         },
         careTeamPatient: function(){
             var id = sessionStorage.getItem('userId');
@@ -33,4 +35,38 @@ if(Meteor.isClient){
         }
     })
 
+    Template.window_appointment.events({
+        'click ._30': function () {
+            var btn = $('.tabs > li.active > a');
+            $(btn).click();
+        }
+    })
+
+    Template.window_care_team.events({
+        'click ._30': function () {
+            var btn = $('.tabs > li.active > a');
+            $(btn).click();
+        }
+    })
+
+    Template.window_diagnosis.events({
+        'click ._30': function () {
+            var btn = $('.tabs > li.active > a');
+            $(btn).click();
+        }
+    })
+
+    Template.window_notes.events({
+        'click ._30': function () {
+            var btn = $('.tabs > li.active > a');
+            $(btn).click();
+        }
+    })
+
+    Template.window_patient_records.events({
+        'click ._30': function () {
+            var btn = $('.tabs > li.active > a');
+            $(btn).click();
+        }
+    })
 }

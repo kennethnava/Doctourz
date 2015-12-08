@@ -1,9 +1,13 @@
 if(Meteor.isClient){
+    var toggled = true;
+
 
     Template.panel_left.rendered = function(){
-        var id = sessionStorage.getItem('currentCaller');
-        var usertocall = Appusers.findOne({_id:id});
-        $('#remotePeerId').val(usertocall.peer_id);
+        if(sessionStorage.getItem('currentCaller')){
+            var id = sessionStorage.getItem('currentCaller');
+            var usertocall = Appusers.findOne({_id:id});
+            $('#remotePeerId').val(usertocall.peer_id);
+        }
     }
 
     Template.panel_right.helpers({
@@ -136,20 +140,43 @@ if(Meteor.isClient){
 
     Template.telemed.helpers({
         avatars: function(){
-            var myId = sessionStorage.getItem('userId');
-            var yourId = sessionStorage.getItem('currentCaller');
+            if(sessionStorage.getItem('currentCaller')){
+                var myId = sessionStorage.getItem('userId');
+                var yourId = sessionStorage.getItem('currentCaller');
 
-            var me = Appusers.findOne({_id:myId});
-            var you = Appusers.findOne({_id:yourId});
+                var me = Appusers.findOne({_id:myId});
+                var you = Appusers.findOne({_id:yourId});
 
-            avatarList = new Mongo.Collection(null);
+                avatarList = new Mongo.Collection(null);
 
-            avatarList.insert({
-                myavatar: me.avatar,
-                youravatar: you.avatar
-            })
+                avatarList.insert({
+                    myavatar: me.avatar,
+                    youravatar: you.avatar,
+                })
 
-            return avatarList.findOne({});
+                return avatarList.findOne({});
+            }
         }
     })
+
+    function bottomNav(event) {
+
+    }
+
+    Template.telemed.events({
+        'click .tabs > li': function (event) {
+            $('.tabs > li').addClass('disabled');
+            $(event.currentTarget).removeClass('disabled');
+            $(event.currentTarget).toggleClass('active');
+
+            if(!toggled){
+                $('.tabs > li').removeClass('disabled');
+                toggled = true
+            } else {
+                toggled = false
+            }
+        }
+    })
+
+
 }

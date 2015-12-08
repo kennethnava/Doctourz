@@ -8,12 +8,12 @@
 
 <template name="window_appointment">
     <div id="window_appointment" class="window_panel">
-        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_appointment')"><i class="fa fa-remove pull-right"></i></a>
+        <a class="_30 fred1 fhoverred3 point"><i class="fa fa-remove pull-right"></i></a>
         <div class="col-xs-12 window_panel_inner">
             <img src="/ss.png" class="col-xs-12 no-padd">
         </div>
 
-        <div class="bottom-dock2">
+        <!--<div class="bottom-dock2">
             <div class="floating-links ">
                 <a  class="btn custom-button-green  btn-block "  onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-compress  pull-right"></i></a>
             </div>
@@ -30,12 +30,14 @@
                 <a class="btn  btn -primary btn-block hide"    onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand pull-right"></i></a>
             </div>
         </div>
+        -->
+
     </div>
 </template>
 
 <template name="window_patient_records">
     <div id="window_patient_records" class="window_panel">
-        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_patient_records')"><i class="fa fa-remove pull-right"></i></a>
+        <a class="_30 fred1 fhoverred3 point"><i class="fa fa-remove pull-right"></i></a>
         <div class="window_panel_inner">
             <div class="col-xs-12">
                 <ul class="list-group ">
@@ -187,7 +189,7 @@
 
 <template name="window_notes">
     <div id="window_notes" class="window_panel">
-        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_notes')"><i class="fa fa-remove pull-right"></i></a>
+        <a class="_30 fred1 fhoverred3 point"><i class="fa fa-remove pull-right"></i></a>
             <div class="col-xs- padd-10 half-opac top-10">
                 <label>12:00 pm</label>
                 <p>Notes details here</p>
@@ -232,7 +234,7 @@
 
 <template name="window_care_team">
     <div id="window_care_team" class="window_panel">
-        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_care_team')"><i class="fa fa-remove pull-right"></i></a>
+        <a class="_30 fred1 fhoverred3 point"><i class="fa fa-remove pull-right"></i></a>
         {{#if equals level "physician"}}
             <div class="col-sm-6">
                 <h3 class="">Your Care Team</h3>
@@ -312,7 +314,7 @@
 
 <template name="window_diagnosis">
     <div id="window_diagnosis" class="window_panel">
-        <a class="_30 fred1 fhoverred3 point" onclick="toggleElement1('window_diagnosis')"><i class="fa fa-remove pull-right"></i></a>
+        <a class="_30 fred1 fhoverred3 point"><i class="fa fa-remove pull-right"></i></a>
         <div class="col-xs-12 window_panel_inner">
             <textarea placeholder="DIAGNOSIS" class="form-control half-opac" style="height:500px;"></textarea>
             <button class="btn btn-primary pull-right top-10 half-opac">Save</button>
@@ -335,5 +337,7 @@
                 <a class="btn  custom-button-green btn-block"   onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-compress pull-right"></i></a>
             </div>
         </div>
+
+
     </div>
 </template>

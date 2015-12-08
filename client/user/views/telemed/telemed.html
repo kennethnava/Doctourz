@@ -1,6 +1,6 @@
 <template name="telemed">
     <div class="bottom-dock">
-        <div class="floating-links">
+        <!--<div class="floating-links">
             <a  class="btn btn-primary btn-block" onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand pull-right"></i></a>
         </div>
         <div class="floating-links">
@@ -15,6 +15,27 @@
         <div class="floating-links">
             <a class="btn btn-primary btn-block"  onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand  pull-right"></i></a>
         </div>
+        -->
+
+        <div class="tab-container text-center">
+            <ul class="tabs clearfix" >
+                <li>
+                    <a class="bottom-toggle"  onclick="toggleElement1('window_diagnosis')"><i class="fa fa-heartbeat rotate" style="font-size:23px;"> </i> &nbsp;DIAGNOSIS <i class="fa fa-expand  pull-right"></i></a>
+                </li>
+                <li>
+                    <a class="bottom-toggle"  onclick="toggleElement1('window_care_team')"><i class="fa fa-users rotate" style="font-size:23px;"> </i> &nbsp;CARE TEAM<i class="fa fa-expand  pull-right"></i></a>
+                </li>
+                <li>
+                    <a class="bottom-toggle"  onclick="toggleElement1('window_notes')"><i class="fa fa-file-text rotate" style="font-size:23px;"> </i> &nbsp;NOTES <i class="fa fa-expand  pull-right"></i></a>
+                </li>
+                <li>
+                    <a class="bottom-toggle"  onclick="toggleElement1('window_patient_records')" ><i class="fa fa-paste rotate" style="font-size:23px;"> </i> &nbsp;PATIENT RECORDS <i class="fa fa-expand  pull-right"></i></a>
+                </li>
+                <li>
+                    <a  class="bottom-toggle" onclick="toggleElement1('window_appointment')"><i class="fa fa-calendar-check-o rotate" style="font-size:23px;"> </i> &nbsp;APPOINTMENTS <i class="fa fa-expand pull-right"></i></a>
+                </li>
+            </ul>
+        </div>
     </div>
 
 
@@ -25,7 +46,9 @@
         <video id="theirVideo" class="theirVideo" autoplay></video>
 
         <div id="telemed_controls" class="text-center">
-            <img class="pull-left img-circle" style="width: 60px; margin: 5px 0px 0px 10px;" src=/{{avatars.myavatar}}>
+            {{#if avatars}}
+                <img class="pull-left img-circle" style="width: 60px; margin: 5px 0px 0px 10px;" src=/{{avatars.myavatar}}>
+            {{/if}}
             <i  class="fa fa-volume-up"></i>
             <i id="videocallNow" class="fa fa-video-camera"></i>
             <i class="fa fa-phone"></i>

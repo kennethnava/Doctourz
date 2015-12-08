@@ -24,7 +24,7 @@
             reliable: false
         }, options);
 
-        // Connection is not open yet.
+// Connection is not open yet.
         this.open = false;
         this.type = 'data';
         this.peer = peer;
@@ -37,12 +37,12 @@
         this.serialization = this.options.serialization;
         this.reliable = this.options.reliable;
 
-        // Data channel buffering.
+// Data channel buffering.
         this._buffer = [];
         this._buffering = false;
         this.bufferSize = 0;
 
-        // For storing large data.
+// For storing large data.
         this._chunkedData = {};
 
         if (this.options._payload) {
@@ -78,7 +78,7 @@
             self.emit('open');
         }
 
-        // Use the Reliable shim for non Firefox browsers
+// Use the Reliable shim for non Firefox browsers
         if (!util.supports.sctp && this.reliable) {
             this._reliable = new Reliable(this._dc, util.debug);
         }
@@ -105,7 +105,7 @@
         var datatype = data.constructor;
         if (this.serialization === 'binary' || this.serialization === 'binary-utf8') {
             if (datatype === Blob) {
-                // Datatype should never be blob
+// Datatype should never be blob
                 util.blobToArrayBuffer(data, function(ab) {
                     data = util.unpack(ab);
                     self.emit('data', data);
@@ -114,7 +114,7 @@
             } else if (datatype === ArrayBuffer) {
                 data = util.unpack(data);
             } else if (datatype === String) {
-                // String fallback for binary data for browsers that don't support binary yet
+// String fallback for binary data for browsers that don't support binary yet
                 var ab = util.binaryStringToArrayBuffer(data);
                 data = util.unpack(ab);
             }
@@ -122,8 +122,8 @@
             data = JSON.parse(data);
         }
 
-        // Check if we've chunked--if so, piece things back together.
-        // We're guaranteed that this isn't 0.
+// Check if we've chunked--if so, piece things back together.
+// We're guaranteed that this isn't 0.
         if (data.__peerData) {
             var id = data.__peerData;
             var chunkInfo = this._chunkedData[id] || {data: [], count: 0, total: data.total};
@@ -132,10 +132,10 @@
             chunkInfo.count += 1;
 
             if (chunkInfo.total === chunkInfo.count) {
-                // Clean up before making the recursive call to `_handleDataMessage`.
+// Clean up before making the recursive call to `_handleDataMessage`.
                 delete this._chunkedData[id];
 
-                // We've received all the chunks--time to construct the complete data.
+// We've received all the chunks--time to construct the complete data.
                 data = new Blob(chunkInfo.data);
                 this._handleDataMessage({data: data});
             }
@@ -168,8 +168,8 @@
             return;
         }
         if (this._reliable) {
-            // Note: reliable shim sending will make it so that you cannot customize
-            // serialization.
+// Note: reliable shim sending will make it so that you cannot customize
+// serialization.
             this._reliable.send(data);
             return;
         }
@@ -179,22 +179,22 @@
         } else if (this.serialization === 'binary' || this.serialization === 'binary-utf8') {
             var blob = util.pack(data);
 
-            // For Chrome-Firefox interoperability, we need to make Firefox "chunk"
-            // the data it sends out.
+// For Chrome-Firefox interoperability, we need to make Firefox "chunk"
+// the data it sends out.
             var needsChunking = util.chunkedBrowsers[this._peerBrowser] || util.chunkedBrowsers[util.browser];
             if (needsChunking && !chunked && blob.size > util.chunkedMTU) {
                 this._sendChunks(blob);
                 return;
             }
 
-            // DataChannel currently only supports strings.
+// DataChannel currently only supports strings.
             if (!util.supports.sctp) {
                 util.blobToBinaryString(blob, function(str) {
                     self._bufferedSend(str);
                 });
             } else if (!util.supports.binaryBlob) {
-                // We only do this if we really need to (e.g. blobs are not supported),
-                // because this conversion is costly.
+// We only do this if we really need to (e.g. blobs are not supported),
+// because this conversion is costly.
                 util.blobToArrayBuffer(blob, function(ab) {
                     self._bufferedSend(ab);
                 });
@@ -222,7 +222,7 @@
 
             var self = this;
             setTimeout(function() {
-                // Try again.
+// Try again.
                 self._buffering = false;
                 self._tryBuffer();
             }, 100);
@@ -261,7 +261,7 @@
             case 'ANSWER':
                 this._peerBrowser = payload.browser;
 
-                // Forward to negotiator
+// Forward to negotiator
                 Negotiator.handleSDP(message.type, this, payload.sdp);
                 break;
             case 'CANDIDATE':
@@ -334,7 +334,7 @@
 
         switch (message.type) {
             case 'ANSWER':
-                // Forward to negotiator
+// Forward to negotiator
                 Negotiator.handleSDP(message.type, this, payload.sdp);
                 this.open = true;
                 break;
@@ -360,7 +360,7 @@
             this,
             this.options._payload
         )
-        // Retrieve lost messages stored because PeerConnection not set up.
+// Retrieve lost messages stored because PeerConnection not set up.
         var messages = this.provider._getMessages(this.id);
         for (var i = 0, ii = messages.length; i < ii; i += 1) {
             this.handleMessage(messages[i]);
@@ -398,7 +398,7 @@
             data: {},
             media: {}
         }, // type => {peerId: {pc_id: pc}}.
-        //providers: {}, // provider's id => providers (there may be multiple providers/client.
+//providers: {}, // provider's id => providers (there may be multiple providers/client.
         queue: [] // connections that are delayed due to a PC being in use.
     }
 
@@ -409,24 +409,24 @@
         var pc = Negotiator._getPeerConnection(connection, options);
 
         if (connection.type === 'media' && options._stream) {
-            // Add the stream.
+// Add the stream.
             pc.addStream(options._stream);
         }
 
-        // Set the connection's PC.
+// Set the connection's PC.
         connection.pc = connection.peerConnection = pc;
-        // What do we need to do now?
+// What do we need to do now?
         if (options.originator) {
             if (connection.type === 'data') {
-                // Create the datachannel.
+// Create the datachannel.
                 var config = {};
-                // Dropping reliable:false support, since it seems to be crashing
-                // Chrome.
+// Dropping reliable:false support, since it seems to be crashing
+// Chrome.
                 /*if (util.supports.sctp && !options.reliable) {
                  // If we have canonical reliable support...
                  config = {maxRetransmits: 0};
                  }*/
-                // Fallback to ensure older browsers don't crash.
+// Fallback to ensure older browsers don't crash.
                 if (!util.supports.sctp) {
                     config = {reliable: options.reliable};
                 }
@@ -453,7 +453,7 @@
         var peerConnections = Negotiator.pcs[connection.type][connection.peer];
 
         var pc;
-        // Not multiplexing while FF and Chrome have not-great support for it.
+// Not multiplexing while FF and Chrome have not-great support for it.
         /*if (options.multiplex) {
          ids = Object.keys(peerConnections);
          for (var i = 0, ii = ids.length; i < ii; i += 1) {
@@ -496,7 +496,7 @@
         if (connection.type === 'data' && !util.supports.sctp) {
             optional = {optional: [{RtpDataChannels: true}]};
         } else if (connection.type === 'media') {
-            // Interop req for chrome.
+// Interop req for chrome.
             optional = {optional: [{DtlsSrtpKeyAgreement: true}]};
         }
 
@@ -514,7 +514,7 @@
         var connectionId = connection.id;
         var provider = connection.provider;
 
-        // ICE CANDIDATES.
+// ICE CANDIDATES.
         util.log('Listening for ICE candidates.');
         pc.onicecandidate = function(evt) {
             if (evt.candidate) {
@@ -548,10 +548,10 @@
             }
         };
 
-        // Fallback for older Chrome impls.
+// Fallback for older Chrome impls.
         pc.onicechange = pc.oniceconnectionstatechange;
 
-        // ONNEGOTIATIONNEEDED (Chrome)
+// ONNEGOTIATIONNEEDED (Chrome)
         util.log('Listening for `negotiationneeded`');
         pc.onnegotiationneeded = function() {
             util.log('`negotiationneeded` triggered');
@@ -562,10 +562,10 @@
             }
         };
 
-        // DATACONNECTION.
+// DATACONNECTION.
         util.log('Listening for data channel');
-        // Fired between offer and answer, so options should already be saved
-        // in the options hash.
+// Fired between offer and answer, so options should already be saved
+// in the options hash.
         pc.ondatachannel = function(evt) {
             util.log('Received data channel');
             var dc = evt.channel;
@@ -573,17 +573,17 @@
             connection.initialize(dc);
         };
 
-        // MEDIACONNECTION.
+// MEDIACONNECTION.
         util.log('Listening for remote stream');
         pc.onaddstream = function(evt) {
             util.log('Received remote stream');
             var stream = evt.stream;
             var connection = provider.getConnection(peerId, connectionId);
-            // 10/10/2014: looks like in Chrome 38, onaddstream is triggered after
-            // setting the remote description. Our connection object in these cases
-            // is actually a DATA connection, so addStream fails.
-            // TODO: This is hopefully just a temporary fix. We should try to
-            // understand why this is happening.
+// 10/10/2014: looks like in Chrome 38, onaddstream is triggered after
+// setting the remote description. Our connection object in these cases
+// is actually a DATA connection, so addStream fails.
+// TODO: This is hopefully just a temporary fix. We should try to
+// understand why this is happening.
             if (connection.type === 'media') {
                 connection.addStream(stream);
             }
@@ -713,17 +713,17 @@
         if (!(this instanceof Peer)) return new Peer(id, options);
         EventEmitter.call(this);
 
-        // Deal with overloading
+// Deal with overloading
         if (id && id.constructor == Object) {
             options = id;
             id = undefined;
         } else if (id) {
-            // Ensure id is a string
+// Ensure id is a string
             id = id.toString();
         }
-        //
+//
 
-        // Configurize options
+// Configurize options
         options = util.extend({
             debug: 0, // 1: Errors, 2: Warnings, 3: All logs
             host: util.CLOUD_HOST,
@@ -734,11 +734,11 @@
             config: util.defaultConfig
         }, options);
         this.options = options;
-        // Detect relative URL host.
+// Detect relative URL host.
         if (options.host === '/') {
             options.host = window.location.hostname;
         }
-        // Set path correctly.
+// Set path correctly.
         if (options.path[0] !== '/') {
             options.path = '/' + options.path;
         }
@@ -746,60 +746,60 @@
             options.path += '/';
         }
 
-        // Set whether we use SSL to same as current host
+// Set whether we use SSL to same as current host
         if (options.secure === undefined && options.host !== util.CLOUD_HOST) {
             options.secure = util.isSecure();
         }
-        // Set a custom log function if present
+// Set a custom log function if present
         if (options.logFunction) {
             util.setLogFunction(options.logFunction);
         }
         util.setLogLevel(options.debug);
-        //
+//
 
-        // Sanity checks
-        // Ensure WebRTC supported
+// Sanity checks
+// Ensure WebRTC supported
         if (!util.supports.audioVideo && !util.supports.data ) {
             this._delayedAbort('browser-incompatible', 'The current browser does not support WebRTC');
             return;
         }
-        // Ensure alphanumeric id
+// Ensure alphanumeric id
         if (!util.validateId(id)) {
             this._delayedAbort('invalid-id', 'ID "' + id + '" is invalid');
             return;
         }
-        // Ensure valid key
+// Ensure valid key
         if (!util.validateKey(options.key)) {
             this._delayedAbort('invalid-key', 'API KEY "' + options.key + '" is invalid');
             return;
         }
-        // Ensure not using unsecure cloud server on SSL page
+// Ensure not using unsecure cloud server on SSL page
         if (options.secure && options.host === '0.peerjs.com') {
             this._delayedAbort('ssl-unavailable',
                 'The cloud server currently does not support HTTPS. Please run your own PeerServer to use HTTPS.');
             return;
         }
-        //
+//
 
-        // States.
+// States.
         this.destroyed = false; // Connections have been killed
         this.disconnected = false; // Connection to PeerServer killed but P2P connections still active
         this.open = false; // Sockets and such are not yet open.
-        //
+//
 
-        // References
+// References
         this.connections = {}; // DataConnections for this peer.
         this._lostMessages = {}; // src => [list of messages]
-        //
+//
 
-        // Start the server connection
+// Start the server connection
         this._initializeServerConnection();
         if (id) {
             this._initialize(id);
         } else {
             this._retrieveId();
         }
-        //
+//
     }
 
     util.inherits(Peer, EventEmitter);
@@ -816,14 +816,14 @@
             self._abort('socket-error', error);
         });
         this.socket.on('disconnected', function() {
-            // If we haven't explicitly disconnected, emit error and disconnect.
+// If we haven't explicitly disconnected, emit error and disconnect.
             if (!self.disconnected) {
                 self.emitError('network', 'Lost connection to server.');
                 self.disconnect();
             }
         });
         this.socket.on('close', function() {
-            // If we haven't explicitly disconnected, emit error.
+// If we haven't explicitly disconnected, emit error.
             if (!self.disconnected) {
                 self._abort('socket-closed', 'Underlying socket is already closed.');
             }
@@ -840,7 +840,7 @@
         var queryString = '?ts=' + new Date().getTime() + '' + Math.random();
         url += queryString;
 
-        // If there's no ID we need to wait for one before trying to init socket.
+// If there's no ID we need to wait for one before trying to init socket.
         http.open('get', url, true);
         http.onerror = function(e) {
             util.error('Error retrieving ID', e);
@@ -893,7 +893,7 @@
                 this._abort('invalid-key', 'API KEY "' + this.options.key + '" is invalid');
                 break;
 
-            //
+//
             case 'LEAVE': // Another peer has closed its connection to this peer.
                 util.log('Received leave message from', peer);
                 this._cleanupPeer(peer);
@@ -908,9 +908,9 @@
 
                 if (connection) {
                     util.warn('Offer received for existing Connection ID:', connectionId);
-                    //connection.handleMessage(message);
+//connection.handleMessage(message);
                 } else {
-                    // Create a new connection.
+// Create a new connection.
                     if (payload.type === 'media') {
                         connection = new MediaConnection(peer, this, {
                             connectionId: connectionId,
@@ -934,7 +934,7 @@
                         util.warn('Received malformed connection type:', payload.type);
                         return;
                     }
-                    // Find messages.
+// Find messages.
                     var messages = this._getMessages(connectionId);
                     for (var i = 0, ii = messages.length; i < ii; i += 1) {
                         connection.handleMessage(messages[i]);
@@ -951,10 +951,10 @@
                 connection = this.getConnection(peer, id);
 
                 if (connection && connection.pc) {
-                    // Pass it on.
+// Pass it on.
                     connection.handleMessage(message);
                 } else if (id) {
-                    // Store for possible later use
+// Store for possible later use
                     this._storeMessage(id, message);
                 } else {
                     util.warn('You received an unrecognized message:', message);
@@ -1143,7 +1143,7 @@
         } else if (this.destroyed) {
             throw new Error('This peer cannot reconnect to the server. It has already been destroyed.');
         } else if (!this.disconnected && !this.open) {
-            // Do nothing. We're still connecting the first time.
+// Do nothing. We're still connecting the first time.
             util.error('In a hurry? We\'re still trying to make the initial connection!');
         } else {
             throw new Error('Peer ' + this.id + ' cannot reconnect because it is not disconnected from the server!');
@@ -1166,7 +1166,7 @@
         var queryString = '?ts=' + new Date().getTime() + '' + Math.random();
         url += queryString;
 
-        // If there's no ID we need to wait for one before trying to init socket.
+// If there's no ID we need to wait for one before trying to init socket.
         http.open('get', url, true);
         http.onerror = function(e) {
             self._abort('server-error', 'Could not get peers from the server.');
@@ -1211,7 +1211,7 @@
 
         EventEmitter.call(this);
 
-        // Disconnected manually.
+// Disconnected manually.
         this.disconnected = false;
         this._queue = [];
 
@@ -1262,8 +1262,8 @@
             self.emit('disconnected');
         };
 
-        // Take care of the queue of connections if necessary and make sure Peer knows
-        // socket is open.
+// Take care of the queue of connections if necessary and make sure Peer knows
+// socket is open.
         this._socket.onopen = function() {
             if (self._timeout) {
                 clearTimeout(self._timeout);
@@ -1286,8 +1286,8 @@
             this._http._streamIndex = n || 0;
             this._http.open('post', this._httpUrl + '/id?i=' + this._http._streamIndex, true);
             this._http.onerror = function() {
-                // If we get an error, likely something went wrong.
-                // Stop streaming.
+// If we get an error, likely something went wrong.
+// Stop streaming.
                 clearTimeout(self._timeout);
                 self.emit('disconnected');
             }
@@ -1309,10 +1309,10 @@
 
     /** Handles onreadystatechange response as a stream. */
     Socket.prototype._handleStream = function(http) {
-        // 3 and 4 are loading/done state. All others are not relevant.
+// 3 and 4 are loading/done state. All others are not relevant.
         var messages = http.responseText.split('\n');
 
-        // Check to see if anything needs to be processed on buffer.
+// Check to see if anything needs to be processed on buffer.
         if (http._buffer) {
             while (http._buffer.length > 0) {
                 var index = http._buffer.shift();
@@ -1330,9 +1330,9 @@
         var message = messages[http._index];
         if (message) {
             http._index += 1;
-            // Buffering--this message is incomplete and we'll get to it next time.
-            // This checks if the httpResponse ended in a `\n`, in which case the last
-            // element of messages should be the empty string.
+// Buffering--this message is incomplete and we'll get to it next time.
+// This checks if the httpResponse ended in a `\n`, in which case the last
+// element of messages should be the empty string.
             if (http._index === messages.length) {
                 if (!http._buffer) {
                     http._buffer = [];
@@ -1381,8 +1381,8 @@
             return;
         }
 
-        // If we didn't get an ID yet, we can't yet send anything so we should queue
-        // up these messages.
+// If we didn't get an ID yet, we can't yet send anything so we should queue
+// up these messages.
         if (!this.id) {
             this._queue.push(data);
             return;
@@ -1427,18 +1427,18 @@
         CLOUD_HOST: '0.peerjs.com',
         CLOUD_PORT: 9000,
 
-        // Browsers that need chunking:
+// Browsers that need chunking:
         chunkedBrowsers: {'Chrome': 1},
         chunkedMTU: 16300, // The original 60000 bytes setting does not work when sending data from Firefox to Chrome, which is "cut off" after 16384 bytes and delivered individually.
 
-        // Logging logic
+// Logging logic
         logLevel: 0,
         setLogLevel: function(level) {
             var debugLevel = parseInt(level, 10);
             if (!isNaN(parseInt(level, 10))) {
                 util.logLevel = debugLevel;
             } else {
-                // If they are using truthy/falsy values for debug
+// If they are using truthy/falsy values for debug
                 util.logLevel = level ? 3 : 0;
             }
             util.log = util.warn = util.error = util.noop;
@@ -1479,13 +1479,13 @@
             }
             err ? console.error.apply(console, copy) : console.log.apply(console, copy);
         },
-        //
+//
 
-        // Returns browser-agnostic default config
+// Returns browser-agnostic default config
         defaultConfig: defaultConfig,
-        //
+//
 
-        // Returns the current browser.
+// Returns the current browser.
         browser: (function() {
             if (window.mozRTCPeerConnection) {
                 return 'Firefox';
@@ -1497,9 +1497,9 @@
                 return 'Unsupported';
             }
         })(),
-        //
+//
 
-        // Lists which features are supported
+// Lists which features are supported
         supports: (function() {
             if (typeof RTCPeerConnection === 'undefined') {
                 return {};
@@ -1529,16 +1529,16 @@
             }
 
             if (data) {
-                // Binary test
+// Binary test
                 try {
                     dc.binaryType = 'blob';
                     binaryBlob = true;
                 } catch (e) {
                 }
 
-                // Reliable test.
-                // Unfortunately Chrome is a bit unreliable about whether or not they
-                // support reliable.
+// Reliable test.
+// Unfortunately Chrome is a bit unreliable about whether or not they
+// support reliable.
                 var reliablePC = new RTCPeerConnection(defaultConfig, {});
                 try {
                     var reliableDC = reliablePC.createDataChannel('_PEERJSRELIABLETEST', {});
@@ -1548,19 +1548,19 @@
                 reliablePC.close();
             }
 
-            // FIXME: not really the best check...
+// FIXME: not really the best check...
             if (audioVideo) {
                 audioVideo = !!pc.addStream;
             }
 
-            // FIXME: this is not great because in theory it doesn't work for
-            // av-only browsers (?).
+// FIXME: this is not great because in theory it doesn't work for
+// av-only browsers (?).
             if (!onnegotiationneeded && data) {
-                // sync default check.
+// sync default check.
                 var negotiationPC = new RTCPeerConnection(defaultConfig, {optional: [{RtpDataChannels: true}]});
                 negotiationPC.onnegotiationneeded = function() {
                     onnegotiationneeded = true;
-                    // async check.
+// async check.
                     if (util && util.supports) {
                         util.supports.onnegotiationneeded = true;
                     }
@@ -1586,16 +1586,16 @@
                 onnegotiationneeded: onnegotiationneeded
             };
         }()),
-        //
+//
 
-        // Ensure alphanumeric ids
+// Ensure alphanumeric ids
         validateId: function(id) {
-            // Allow empty ids
+// Allow empty ids
             return !id || /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/.exec(id);
         },
 
         validateKey: function(key) {
-            // Allow empty keys
+// Allow empty keys
             return !key || /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/.exec(key);
         },
 
@@ -1643,9 +1643,9 @@
             var timeouts = [];
             var messageName = 'zero-timeout-message';
 
-            // Like setTimeout, but only takes a function argument.	 There's
-            // no time argument (always zero) and no arguments (you have to
-            // use a closure).
+// Like setTimeout, but only takes a function argument.	 There's
+// no time argument (always zero) and no arguments (you have to
+// use a closure).
             function setZeroTimeoutPostMessage(fn) {
                 timeouts.push(fn);
                 global.postMessage(messageName, '*');
@@ -1669,9 +1669,9 @@
             return setZeroTimeoutPostMessage;
         }(window)),
 
-        // Binary stuff
+// Binary stuff
 
-        // chunks a blob.
+// chunks a blob.
         chunk: function(bl) {
             var chunks = [];
             var size = bl.size;
@@ -1721,7 +1721,7 @@
         randomToken: function () {
             return Math.random().toString(36).substr(2);
         },
-        //
+//
 
         isSecure: function() {
             return location.protocol === 'https:';
@@ -1909,9 +1909,9 @@
             }
         }
 
-        //
-        // Reset the array, or remove it completely if we have no more listeners.
-        //
+//
+// Reset the array, or remove it completely if we have no more listeners.
+//
         if (events.length) {
             this._events[event] = events.length === 1 ? events[0] : events;
         } else {
@@ -1981,7 +1981,7 @@
     module.exports = BinaryPack;
 
     function Unpacker (data){
-        // Data is ArrayBuffer
+// Data is ArrayBuffer
         this.index = 0;
         this.dataBuffer = data;
         this.dataView = new Uint8Array(this.dataBuffer);
@@ -2142,7 +2142,7 @@
         var buf = this.dataBuffer.slice(this.index, this.index + size);
         this.index += size;
 
-        //buf = util.bufferToString(buf);
+//buf = util.bufferToString(buf);
 
         return buf;
     }
@@ -2475,7 +2475,7 @@
 
     function utf8Length(str){
         if (str.length > 600) {
-            // Blob method faster for large strings
+// Blob method faster for large strings
             return (new Blob([str])).size;
         } else {
             return str.replace(/[^\u0000-\u007F]/g, _utf8Replace).length;
@@ -2561,24 +2561,24 @@
 
         util.debug = debug;
 
-        // Messages sent/received so far.
-        // id: { ack: n, chunks: [...] }
+// Messages sent/received so far.
+// id: { ack: n, chunks: [...] }
         this._outgoing = {};
-        // id: { ack: ['ack', id, n], chunks: [...] }
+// id: { ack: ['ack', id, n], chunks: [...] }
         this._incoming = {};
         this._received = {};
 
-        // Window size.
+// Window size.
         this._window = 1000;
-        // MTU.
+// MTU.
         this._mtu = 500;
-        // Interval for setInterval. In ms.
+// Interval for setInterval. In ms.
         this._interval = 0;
 
-        // Messages sent.
+// Messages sent.
         this._count = 0;
 
-        // Outgoing message queue.
+// Outgoing message queue.
         this._queue = [];
 
         this._setupDC();
@@ -2586,7 +2586,7 @@
 
 // Send a message reliably.
     Reliable.prototype.send = function(msg) {
-        // Determine if chunking is necessary.
+// Determine if chunking is necessary.
         var bl = util.pack(msg);
         if (bl.size < this._mtu) {
             this._handleSend(['no', bl]);
@@ -2602,18 +2602,18 @@
             this._outgoing[this._count].timer = new Date();
         }
 
-        // Send prelim window.
+// Send prelim window.
         this._sendWindowedChunks(this._count);
         this._count += 1;
     };
 
 // Set up interval for processing queue.
     Reliable.prototype._setupInterval = function() {
-        // TODO: fail gracefully.
+// TODO: fail gracefully.
 
         var self = this;
         this._timeout = setInterval(function() {
-            // FIXME: String stuff makes things terribly async.
+// FIXME: String stuff makes things terribly async.
             var msg = self._queue.shift();
             if (msg._multiple) {
                 for (var i = 0, ii = msg.length; i < ii; i += 1) {
@@ -2634,7 +2634,7 @@
         if (self._queue.length === 0) {
             clearTimeout(self._timeout);
             self._timeout = null;
-            //self._processAcks();
+//self._processAcks();
         }
     };
 
@@ -2669,13 +2669,13 @@
 
 // Set up DataChannel handlers.
     Reliable.prototype._setupDC = function() {
-        // Handle various message types.
+// Handle various message types.
         var self = this;
         this._dc.onmessage = function(e) {
             var msg = e.data;
             var datatype = msg.constructor;
-            // FIXME: msg is String until binary is supported.
-            // Once that happens, this will have to be smarter.
+// FIXME: msg is String until binary is supported.
+// Once that happens, this will have to be smarter.
             if (datatype === String) {
                 var ab = util.binaryStringToArrayBuffer(msg);
                 msg = util.unpack(ab);
@@ -2691,18 +2691,18 @@
         var odata = this._outgoing[id];
         var data;
         switch (msg[0]) {
-            // No chunking was done.
+// No chunking was done.
             case 'no':
                 var message = id;
                 if (!!message) {
                     this.onmessage(util.unpack(message));
                 }
                 break;
-            // Reached the end of the message.
+// Reached the end of the message.
             case 'end':
                 data = idata;
 
-                // In case end comes first.
+// In case end comes first.
                 this._received[id] = msg[2];
 
                 if (!data) {
@@ -2715,10 +2715,10 @@
                 data = odata;
                 if (!!data) {
                     var ack = msg[2];
-                    // Take the larger ACK, for out of order messages.
+// Take the larger ACK, for out of order messages.
                     data.ack = Math.max(ack, data.ack);
 
-                    // Clean up when all chunks are ACKed.
+// Clean up when all chunks are ACKed.
                     if (data.ack >= data.chunks.length) {
                         util.log('Time: ', new Date() - data.timer);
                         delete this._outgoing[id];
@@ -2726,11 +2726,11 @@
                         this._processAcks();
                     }
                 }
-                // If !data, just ignore.
+// If !data, just ignore.
                 break;
-            // Received a chunk of data.
+// Received a chunk of data.
             case 'chunk':
-                // Create a new entry if none exists.
+// Create a new entry if none exists.
                 data = idata;
                 if (!data) {
                     var end = this._received[id];
@@ -2748,16 +2748,16 @@
                 var chunk = msg[3];
                 data.chunks[n] = new Uint8Array(chunk);
 
-                // If we get the chunk we're looking for, ACK for next missing.
-                // Otherwise, ACK the same N again.
+// If we get the chunk we're looking for, ACK for next missing.
+// Otherwise, ACK the same N again.
                 if (n === data.ack[2]) {
                     this._calculateNextAck(id);
                 }
                 this._ack(id);
                 break;
             default:
-                // Shouldn't happen, but would make sense for message to just go
-                // through as is.
+// Shouldn't happen, but would make sense for message to just go
+// through as is.
                 this._handleSend(msg);
                 break;
         }
@@ -2785,7 +2785,7 @@
     Reliable.prototype._ack = function(id) {
         var ack = this._incoming[id].ack;
 
-        // if ack is the end value, then call _complete.
+// if ack is the end value, then call _complete.
         if (this._received[id] === ack[2]) {
             this._complete(id);
             this._received[id] = true;
@@ -2799,7 +2799,7 @@
         var data = this._incoming[id];
         var chunks = data.chunks;
         for (var i = 0, ii = chunks.length; i < ii; i += 1) {
-            // This chunk is missing!!! Better ACK for it.
+// This chunk is missing!!! Better ACK for it.
             if (chunks[i] === undefined) {
                 data.ack[2] = i;
                 return;
@@ -2842,12 +2842,12 @@
 
 // Ups bandwidth limit on SDP. Meant to be called during offer/answer.
     Reliable.higherBandwidthSDP = function(sdp) {
-        // AS stands for Application-Specific Maximum.
-        // Bandwidth number is in kilobits / sec.
-        // See RFC for more info: http://www.ietf.org/rfc/rfc2327.txt
+// AS stands for Application-Specific Maximum.
+// Bandwidth number is in kilobits / sec.
+// See RFC for more info: http://www.ietf.org/rfc/rfc2327.txt
 
-        // Chrome 31+ doesn't want us munging the SDP, so we'll let them have their
-        // way.
+// Chrome 31+ doesn't want us munging the SDP, so we'll let them have their
+// way.
         var version = navigator.appVersion.match(/Chrome\/(.*?) /);
         if (version) {
             version = parseInt(version[1].split('.').shift());
@@ -2911,9 +2911,9 @@
             var timeouts = [];
             var messageName = 'zero-timeout-message';
 
-            // Like setTimeout, but only takes a function argument.	 There's
-            // no time argument (always zero) and no arguments (you have to
-            // use a closure).
+// Like setTimeout, but only takes a function argument.	 There's
+// no time argument (always zero) and no arguments (you have to
+// use a closure).
             function setZeroTimeoutPostMessage(fn) {
                 timeouts.push(fn);
                 global.postMessage(messageName, '*');

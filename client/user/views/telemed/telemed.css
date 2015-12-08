@@ -44,7 +44,7 @@
     left: 60px;
     width: 95%;
     height:auto;
-    z-index: 9999;
+    z-index: 9999999;
 }
 
 .bottom-dock2{
@@ -206,3 +206,64 @@
 .custom-blue{
     color: #669ACC;
 }
+
+
+/* TAB CSS */
+.tab-container{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 40px;
+}
+
+ul.tabs{
+    margin: 0 auto;
+    list-style-type : none;
+    line-height : 40px;
+    max-height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    padding-right: 100px;
+}
+ul.tabs > li{
+    background-color:#1995dc;
+    float : right;
+    margin : 5px -10px 0;
+    border-top-right-radius: 25px 170px;
+    border-top-left-radius: 20px 90px;
+    padding : 0 30px 0 25px;
+    height: 170px;
+    position : relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,.5);
+    max-width : 400px;
+}
+ul.tabs > li.active {
+    z-index: 2;
+    background-color: rgba(154,254,102,.7) !important
+}
+
+ul.tabs > li.active > a{
+    color: #1995dc !important;
+}
+
+ul.tabs > li > a{
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: white;
+    width: 170px;
+    font-weight: bold;
+}
+.disabled{
+    pointer-events:none;
+    opacity:0.4;
+}
+
+/* Clear Fix took for HTML 5 Boilerlate*/
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
