@@ -1,5 +1,8 @@
 if(Meteor.isClient){
 
+    Template.carousel_page.rendered = function () {
+        $("#myCarousel").carousel();
+    }
 
 }
 
