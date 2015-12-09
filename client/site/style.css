@@ -109,9 +109,9 @@ hr{
     display: table;
     width: 100%;
     height: 100%;
-    /* For at least Firefox */
+    /* For at least Firefox ../../images/hero-img.jpg*/
     min-height: 100%;
-    background-image: url(../../images/hero-img.jpg);
+    background-image: url('/newBg_01.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -122,7 +122,7 @@ hr{
 .intro-body{
     display: table-cell;
     vertical-align: middle;
-    background-color: rgba(12, 112, 167,0.7);
+    background-color: rgba(12, 112, 167,0.1);
     text-align: center;
 }
 
@@ -330,4 +330,67 @@ hr{
 }
 .step-page{
     background-color: #F8F8F8;
+}
+.slide-1-text{
+    font-size: 80px;
+    font-weight: bold;
+    color: #45c1ff !important;
+    position: absolute;
+    top: 400px;
+    right: 80px;
+    text-align: right;
+    line-height: 90%;
+}
+.slide-2-text{
+    font-size: 80px;
+    font-weight: bold;
+    color: #f26b34 !important;
+    position: absolute;
+    top: 400px;
+    text-align: center;
+    padding-left: 400px;
+    line-height: 90%;
+}
+.slide-3-text-all {
+    position: absolute;
+    top: 350px;
+    text-align: left;
+    right: 80px;
+    width: 550px;
+}
+.slide-3-text{
+    font-size: 80px;
+    font-weight: bold;
+    color: white !important;
+    line-height: 90%;
+}
+.slide-3-sub{
+    font-size: 20px;
+    font-weight: normal;
+    color: dimgray;
+    line-height: 1;
+    text-align: left;
+    text-wrap: normal;
+}
+.slide-4-text-all{
+    position: absolute;
+    top: 300px;
+    text-align: left;
+    right: 80px;
+    width: 550px;
+}
+.slide-4-text{
+    font-size: 80px;
+    font-weight: bold;
+    color: #f26e22 !important;
+    padding-bottom: 20px;
+    line-height: 90%;
+}
+.slide-4-sub{
+    font-size: 20px;
+    font-weight: normal;
+    color: dimgray;
+    line-height: 1;
+    text-align: left;
+    text-wrap: normal;
 }
